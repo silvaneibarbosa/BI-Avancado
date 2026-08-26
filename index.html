@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Relatório N1 → N2</title>
+  <title>Relatório Executivo N1 → N2</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -24,13 +24,29 @@
       flex-direction: column;
       gap: 8px;
       flex-shrink: 0;
+      transition: width 0.25s ease, padding 0.25s ease, opacity 0.2s ease;
+      overflow: hidden;
+    }
+    .sidebar.collapsed {
+      width: 0;
+      padding: 24px 0;
+      opacity: 0;
+      border-right: none;
+      pointer-events: none;
+    }
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-left: 8px;
+      min-width: 148px; /* evita quebra durante a animação */
     }
     .sidebar h2 {
       font-size: 1.4rem;
       font-weight: 600;
       color: #a5b4fc;
-      margin-bottom: 20px;
-      padding-left: 8px;
+      white-space: nowrap;
     }
     .period-btn {
       display: block;
@@ -45,6 +61,7 @@
       border: none;
       text-align: left;
       width: 100%;
+      white-space: nowrap;
     }
     .period-btn:hover {
       background: #334155;
@@ -69,14 +86,42 @@
       display: flex;
       flex-direction: column;
       position: relative;
+      min-width: 0;
     }
     .header {
-      padding: 16px 24px;
+      padding: 12px 20px;
       background: #1e293b;
       border-bottom: 1px solid #334155;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 12px;
+    }
+    .toggle-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      background: #0f172a;
+      color: #94a3b8;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .toggle-btn:hover {
+      background: #334155;
+      color: #e2e8f0;
+      border-color: #475569;
+    }
+    .toggle-btn svg {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.25s ease;
+    }
+    body.sidebar-collapsed .toggle-btn svg {
+      transform: rotate(180deg);
     }
     .header-title {
       display: flex;
@@ -142,8 +187,10 @@
 </head>
 <body>
   <!-- Barra lateral de períodos -->
-  <aside class="sidebar">
-    <h2>Período</h2>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>Período</h2>
+    </div>
     <button class="period-btn" data-month="01/2026" data-file="dashboard_executivo_01-2026.html">01/2026</button>
     <button class="period-btn" data-month="02/2026" data-file="dashboard_executivo_02-2026.html">02/2026</button>
     <button class="period-btn" data-month="03/2026" data-file="dashboard_executivo_03-2026.html">03/2026</button>
@@ -161,8 +208,15 @@
   <!-- Área principal -->
   <div class="main">
     <header class="header">
+      <!-- Botão de ocultar/expandir a barra lateral -->
+      <button class="toggle-btn" id="toggle-sidebar" title="Ocultar / Expandir períodos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
       <div class="header-title">
-        <h1>Relatório N1 → N2</h1>
+        <h1>Relatório Executivo N1 → N2</h1>
         <span class="badge" id="current-month">--/--</span>
       </div>
     </header>
@@ -179,7 +233,6 @@
   <script>
     // ============================================================
     // CONFIGURAÇÃO: liste aqui os meses que JÁ possuem o arquivo HTML
-    // Quando você criar o HTML de um novo mês, basta adicionar aqui.
     // ============================================================
     const MESES_DISPONIVEIS = [
       '01/2026',
@@ -190,6 +243,10 @@
       '06/2026',
       '07/2026'
       // '08/2026',  ← descomente quando o arquivo existir
+      // '09/2026',  ← descomente quando o arquivo existir
+      // '10/2026',  ← descomente quando o arquivo existir
+      // '11/2026',  ← descomente quando o arquivo existir
+      // '12/2026',  ← descomente quando o arquivo existir
     ];
 
     // ----------------------------------------------------------
@@ -206,11 +263,21 @@
     // ----------------------------------------------------------
     // Elementos
     // ----------------------------------------------------------
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggle-sidebar');
     const iframe = document.getElementById('dashboard-frame');
     const emptyState = document.getElementById('empty-state');
     const emptyMessage = document.getElementById('empty-message');
     const badge = document.getElementById('current-month');
     const botoes = document.querySelectorAll('.period-btn');
+
+    // ----------------------------------------------------------
+    // Toggle da barra lateral
+    // ----------------------------------------------------------
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      document.body.classList.toggle('sidebar-collapsed');
+    });
 
     // ----------------------------------------------------------
     // Marca visualmente os meses indisponíveis
@@ -237,12 +304,10 @@
       badge.textContent = mes;
 
       if (MESES_DISPONIVEIS.includes(mes)) {
-        // Arquivo existe → mostra o iframe
         emptyState.classList.remove('visible');
         iframe.style.display = 'block';
         iframe.src = arquivo;
       } else {
-        // Arquivo não existe → mostra mensagem amigável
         iframe.style.display = 'none';
         iframe.src = 'about:blank';
         emptyMessage.innerHTML = `Os dados de <strong>${mes}</strong> ainda não foram processados.<br>Assim que o relatório estiver disponível, ele aparecerá automaticamente.`;
@@ -251,19 +316,18 @@
     }
 
     // ----------------------------------------------------------
-    // Eventos de clique
+    // Eventos de clique nos períodos
     // ----------------------------------------------------------
     botoes.forEach(btn => {
       btn.addEventListener('click', () => carregarPeriodo(btn));
     });
 
     // ----------------------------------------------------------
-    // Inicialização: ativa o mês anterior (ou o mais recente disponível)
+    // Inicialização: ativa o mês anterior
     // ----------------------------------------------------------
-    const mesAnterior = getMesAnterior(); // ex: "07/2026"
+    const mesAnterior = getMesAnterior();
     let btnInicial = Array.from(botoes).find(b => b.dataset.month === mesAnterior);
 
-    // Se o mês anterior ainda não existir na lista, pega o último disponível
     if (!btnInicial || !MESES_DISPONIVEIS.includes(mesAnterior)) {
       const ultimoDisponivel = MESES_DISPONIVEIS[MESES_DISPONIVEIS.length - 1];
       btnInicial = Array.from(botoes).find(b => b.dataset.month === ultimoDisponivel);
