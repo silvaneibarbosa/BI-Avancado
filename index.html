@@ -23,6 +23,7 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
+      flex-shrink: 0;
     }
     .sidebar h2 {
       font-size: 1.4rem;
@@ -40,6 +41,10 @@
       font-size: 0.95rem;
       transition: all 0.2s;
       background: transparent;
+      cursor: pointer;
+      border: none;
+      text-align: left;
+      width: 100%;
     }
     .period-btn:hover {
       background: #334155;
@@ -50,12 +55,20 @@
       color: white;
       font-weight: 500;
     }
+    .period-btn.unavailable {
+      opacity: 0.45;
+    }
+    .period-btn.unavailable:hover {
+      background: #334155;
+      color: #94a3b8;
+    }
 
     /* ===== Conteúdo principal ===== */
     .main {
       flex: 1;
       display: flex;
       flex-direction: column;
+      position: relative;
     }
     .header {
       padding: 16px 24px;
@@ -87,24 +100,62 @@
       border: none;
       background: #0f172a;
     }
+
+    /* ===== Mensagem de período não apurado ===== */
+    .empty-state {
+      display: none;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 40px;
+      text-align: center;
+      background: #0f172a;
+    }
+    .empty-state.visible {
+      display: flex;
+    }
+    .empty-state .icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #64748b;
+    }
+    .empty-state h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+    .empty-state p {
+      font-size: 0.95rem;
+      color: #94a3b8;
+      max-width: 360px;
+      line-height: 1.5;
+    }
   </style>
 </head>
 <body>
   <!-- Barra lateral de períodos -->
   <aside class="sidebar">
     <h2>Período</h2>
-    <a href="dashboard_executivo_01-2026.html" class="period-btn" data-month="01/2026">01/2026</a>
-    <a href="dashboard_executivo_02-2026.html" class="period-btn" data-month="02/2026">02/2026</a>
-    <a href="dashboard_executivo_03-2026.html" class="period-btn" data-month="03/2026">03/2026</a>
-    <a href="dashboard_executivo_04-2026.html" class="period-btn" data-month="04/2026">04/2026</a>
-    <a href="dashboard_executivo_05-2026.html" class="period-btn" data-month="05/2026">05/2026</a>
-    <a href="dashboard_executivo_06-2026.html" class="period-btn" data-month="06/2026">06/2026</a>
-    <a href="dashboard_executivo_07-2026.html" class="period-btn" data-month="07/2026">07/2026</a>
-    <a href="dashboard_executivo_08-2026.html" class="period-btn" data-month="08/2026">08/2026</a>
-	<a href="dashboard_executivo_09-2026.html" class="period-btn" data-month="09/2026">09/2026</a>
-    <a href="dashboard_executivo_10-2026.html" class="period-btn" data-month="10/2026">10/2026</a>
-    <a href="dashboard_executivo_11-2026.html" class="period-btn" data-month="11/2026">11/2026</a>
-    <a href="dashboard_executivo_12-2026.html" class="period-btn" data-month="12/2026">12/2026</a>
+    <button class="period-btn" data-month="01/2026" data-file="dashboard_executivo_01-2026.html">01/2026</button>
+    <button class="period-btn" data-month="02/2026" data-file="dashboard_executivo_02-2026.html">02/2026</button>
+    <button class="period-btn" data-month="03/2026" data-file="dashboard_executivo_03-2026.html">03/2026</button>
+    <button class="period-btn" data-month="04/2026" data-file="dashboard_executivo_04-2026.html">04/2026</button>
+    <button class="period-btn" data-month="05/2026" data-file="dashboard_executivo_05-2026.html">05/2026</button>
+    <button class="period-btn" data-month="06/2026" data-file="dashboard_executivo_06-2026.html">06/2026</button>
+    <button class="period-btn" data-month="07/2026" data-file="dashboard_executivo_07-2026.html">07/2026</button>
+    <button class="period-btn" data-month="08/2026" data-file="dashboard_executivo_08-2026.html">08/2026</button>
+    <button class="period-btn" data-month="09/2026" data-file="dashboard_executivo_09-2026.html">09/2026</button>
+    <button class="period-btn" data-month="10/2026" data-file="dashboard_executivo_10-2026.html">10/2026</button>
+    <button class="period-btn" data-month="11/2026" data-file="dashboard_executivo_11-2026.html">11/2026</button>
+    <button class="period-btn" data-month="12/2026" data-file="dashboard_executivo_12-2026.html">12/2026</button>
   </aside>
 
   <!-- Área principal -->
@@ -112,32 +163,116 @@
     <header class="header">
       <div class="header-title">
         <h1>Relatório Executivo N1 → N2</h1>
-        <span class="badge" id="current-month">08/2026</span>
+        <span class="badge" id="current-month">--/--</span>
       </div>
     </header>
 
-    <!-- Aqui o dashboard escolhido é carregado -->
-    <iframe id="dashboard-frame" src="dashboard_executivo_08-2026.html"></iframe>
+    <iframe id="dashboard-frame" title="Dashboard"></iframe>
+
+    <div class="empty-state" id="empty-state">
+      <div class="icon">📅</div>
+      <h2>Período ainda não apurado</h2>
+      <p id="empty-message">Os dados deste mês ainda não foram processados.<br>Assim que o relatório estiver disponível, ele aparecerá automaticamente.</p>
+    </div>
   </div>
 
   <script>
-    // Destaca o botão clicado e atualiza o iframe + badge
-    document.querySelectorAll('.period-btn').forEach(btn => {
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
+    // ============================================================
+    // CONFIGURAÇÃO: liste aqui os meses que JÁ possuem o arquivo HTML
+    // Quando você criar o HTML de um novo mês, basta adicionar aqui.
+    // ============================================================
+    const MESES_DISPONIVEIS = [
+      '01/2026',
+      '02/2026',
+      '03/2026',
+      '04/2026',
+      '05/2026',
+      '06/2026',
+      '07/2026',
+      '08/2026'
+      // '09/2026',  ← descomente quando o arquivo existir
+    ];
 
-        // Remove active de todos
-        document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
-        // Ativa o clicado
-        this.classList.add('active');
+    // ----------------------------------------------------------
+    // Calcula o mês anterior (ex: hoje 26/08/2026 → 07/2026)
+    // ----------------------------------------------------------
+    function getMesAnterior() {
+      const hoje = new Date();
+      const mesAnterior = new Date(hoje.getFullYear(), hoje.getMonth() - 1, 1);
+      const mm = String(mesAnterior.getMonth() + 1).padStart(2, '0');
+      const yyyy = mesAnterior.getFullYear();
+      return `${mm}/${yyyy}`;
+    }
 
-        // Atualiza o iframe
-        document.getElementById('dashboard-frame').src = this.getAttribute('href');
+    // ----------------------------------------------------------
+    // Elementos
+    // ----------------------------------------------------------
+    const iframe = document.getElementById('dashboard-frame');
+    const emptyState = document.getElementById('empty-state');
+    const emptyMessage = document.getElementById('empty-message');
+    const badge = document.getElementById('current-month');
+    const botoes = document.querySelectorAll('.period-btn');
 
-        // Atualiza o badge do mês
-        document.getElementById('current-month').textContent = this.dataset.month;
-      });
+    // ----------------------------------------------------------
+    // Marca visualmente os meses indisponíveis
+    // ----------------------------------------------------------
+    botoes.forEach(btn => {
+      const mes = btn.dataset.month;
+      if (!MESES_DISPONIVEIS.includes(mes)) {
+        btn.classList.add('unavailable');
+      }
     });
+
+    // ----------------------------------------------------------
+    // Função para carregar um período
+    // ----------------------------------------------------------
+    function carregarPeriodo(btn) {
+      const mes = btn.dataset.month;
+      const arquivo = btn.dataset.file;
+
+      // Atualiza botão ativo
+      botoes.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Atualiza badge
+      badge.textContent = mes;
+
+      if (MESES_DISPONIVEIS.includes(mes)) {
+        // Arquivo existe → mostra o iframe
+        emptyState.classList.remove('visible');
+        iframe.style.display = 'block';
+        iframe.src = arquivo;
+      } else {
+        // Arquivo não existe → mostra mensagem amigável
+        iframe.style.display = 'none';
+        iframe.src = 'about:blank';
+        emptyMessage.innerHTML = `Os dados de <strong>${mes}</strong> ainda não foram processados.<br>Assim que o relatório estiver disponível, ele aparecerá automaticamente.`;
+        emptyState.classList.add('visible');
+      }
+    }
+
+    // ----------------------------------------------------------
+    // Eventos de clique
+    // ----------------------------------------------------------
+    botoes.forEach(btn => {
+      btn.addEventListener('click', () => carregarPeriodo(btn));
+    });
+
+    // ----------------------------------------------------------
+    // Inicialização: ativa o mês anterior (ou o mais recente disponível)
+    // ----------------------------------------------------------
+    const mesAnterior = getMesAnterior(); // ex: "07/2026"
+    let btnInicial = Array.from(botoes).find(b => b.dataset.month === mesAnterior);
+
+    // Se o mês anterior ainda não existir na lista, pega o último disponível
+    if (!btnInicial || !MESES_DISPONIVEIS.includes(mesAnterior)) {
+      const ultimoDisponivel = MESES_DISPONIVEIS[MESES_DISPONIVEIS.length - 1];
+      btnInicial = Array.from(botoes).find(b => b.dataset.month === ultimoDisponivel);
+    }
+
+    if (btnInicial) {
+      carregarPeriodo(btnInicial);
+    }
   </script>
 </body>
 </html>
