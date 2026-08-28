@@ -568,7 +568,7 @@
       </div>
     </div>
 
-    <div class="glass rounded-2xl p-6"><div class="flex items-center justify-between mb-4"><div><h2 class="font-bold text-lg"><i class="fa-solid fa-brain text-violet-400 mr-2"></i>Análise IA</h2><p class="text-xs text-slate-400 mt-1">Modelo: qwen2.5:7b-instruct • Gerado em 28/08/2026 10:51</p></div></div><div class="prose prose-invert prose-sm max-w-none text-slate-300 leading-relaxed" id="analiseIA"><h2>Análise IA não executada</h2>
+    <div class="glass rounded-2xl p-6"><div class="flex items-center justify-between mb-4"><div><h2 class="font-bold text-lg"><i class="fa-solid fa-brain text-violet-400 mr-2"></i>Análise IA</h2><p class="text-xs text-slate-400 mt-1">Modelo: qwen2.5:7b-instruct • Gerado em 28/08/2026 10:56</p></div></div><div class="prose prose-invert prose-sm max-w-none text-slate-300 leading-relaxed" id="analiseIA"><h2>Análise IA não executada</h2>
 <p>A análise com Ollama está desativada nesta execução. O dashboard foi gerado apenas com os dados factuais.</p></div></div>
 
     <div class="glass rounded-2xl p-6"><h2 class="font-bold"><i class="fa-solid fa-database text-cyan-400 mr-2"></i>Próxima evolução dos dados</h2><p class="text-xs text-slate-400 mt-1 mb-5">A fonte atual permite análise de volume e distribuição, mas não sustenta métricas de tempo, produtividade ou causa raiz.</p><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"><div class="bg-slate-900/60 rounded-xl p-4 border border-slate-800"><div class="text-cyan-400 font-bold text-xs mb-2"><i class="fa-solid fa-circle-plus mr-1"></i>SLA e tempo</div><p class="text-xs text-slate-400">Adicionar abertura, primeira resposta e conclusão.</p></div><div class="bg-slate-900/60 rounded-xl p-4 border border-slate-800"><div class="text-cyan-400 font-bold text-xs mb-2"><i class="fa-solid fa-circle-plus mr-1"></i>Causa raiz</div><p class="text-xs text-slate-400">Criar taxonomia padronizada para classificar a natureza da demanda.</p></div><div class="bg-slate-900/60 rounded-xl p-4 border border-slate-800"><div class="text-cyan-400 font-bold text-xs mb-2"><i class="fa-solid fa-circle-plus mr-1"></i>Esforço</div><p class="text-xs text-slate-400">Registrar TMA e horas apontadas por atendimento.</p></div><div class="bg-slate-900/60 rounded-xl p-4 border border-slate-800"><div class="text-cyan-400 font-bold text-xs mb-2"><i class="fa-solid fa-circle-plus mr-1"></i>FCR N1</div><p class="text-xs text-slate-400">Registrar o volume total recebido pelo N1, inclusive demandas resolvidas no primeiro nível.</p></div></div></div>
@@ -580,7 +580,7 @@
   </section>
 </main>
 
-<footer class="max-w-7xl mx-auto px-4 lg:px-8 py-6 text-center text-xs text-slate-500 border-t border-slate-800/70">Dashboard N1 → N2 • 08/2026 • Gerado em 28/08/2026 10:51 • Desenvolvido por: SilvaneiBarbosa ©</footer>
+<footer class="max-w-7xl mx-auto px-4 lg:px-8 py-6 text-center text-xs text-slate-500 border-t border-slate-800/70">Dashboard N1 → N2 • 08/2026 • Gerado em 28/08/2026 10:56 • Desenvolvido por: SilvaneiBarbosa ©</footer>
 
 <script>
 const categoryData={"labels": ["Folha de Pagamento", "e-Social", "Escrita Fiscal", "Tron Box", "Banco de Dados", "Tron Connect", "Ponto Eletrônico", "Contabilidade", "Laris", "Reinf"], "counts": [251, 194, 91, 51, 38, 25, 23, 13, 7, 7]};
@@ -595,13 +595,40 @@ const totalRegistros=708;
 
 let chartAcoes=null;
 let chartAnalistas=null;
+// Denominador do % no tooltip de "Tipos de Ação".
+// Sem filtro: total geral. Com drill-down por analista: total daquele analista.
+let totalAcoesTooltip=totalRegistros;
 
 function chartOptions(){return {responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#94a3b8',font:{size:10}}},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.raw} (${totalRegistros?((c.raw/totalRegistros)*100).toFixed(1):0}%)`}}},scales:{x:{ticks:{color:'#94a3b8',font:{size:10}},grid:{display:false}},y:{ticks:{color:'#94a3b8'},grid:{color:'rgba(148,163,184,.08)'}}}}}
+
+function chartOptionsAcoes(){
+ return {
+  responsive:true,
+  maintainAspectRatio:false,
+  plugins:{
+   legend:{labels:{color:'#94a3b8',font:{size:10}}},
+   tooltip:{
+    callbacks:{
+     label:c=>{
+      const denom=totalAcoesTooltip||0;
+      const pct=denom?((c.raw/denom)*100).toFixed(1):0;
+      return ` ${c.label}: ${c.raw} (${pct}%)`;
+     }
+    }
+   }
+  },
+  scales:{
+   x:{ticks:{color:'#94a3b8',font:{size:10}},grid:{display:false}},
+   y:{ticks:{color:'#94a3b8'},grid:{color:'rgba(148,163,184,.08)'}}
+  }
+ };
+}
+
 function initCharts(){
  const base=chartOptions();
  new Chart(document.getElementById('chartCategorias'),{type:'doughnut',data:{labels:categoryData.labels,datasets:[{data:categoryData.counts,backgroundColor:['#6366f1','#3b82f6','#06b6d4','#10b981','#f59e0b','#ec4899','#8b5cf6','#14b8a6','#f97316','#64748b'],borderWidth:2,borderColor:'#1e293b'}]},options:{...base,scales:{}}});
  new Chart(document.getElementById('chartSubcategorias'),{type:'bar',data:{labels:subcategoryData.labels,datasets:[{data:subcategoryData.counts,backgroundColor:'#8b5cf6',borderRadius:6}]},options:{...base,indexAxis:'y',plugins:{...base.plugins,legend:{display:false}}}});
- chartAcoes=new Chart(document.getElementById('chartAcoes'),{type:'bar',data:{labels:actionData.labels,datasets:[{data:actionData.counts,backgroundColor:'#10b981',borderRadius:6}]},options:{...base,plugins:{...base.plugins,legend:{display:false}}}});
+ chartAcoes=new Chart(document.getElementById('chartAcoes'),{type:'bar',data:{labels:actionData.labels,datasets:[{data:actionData.counts,backgroundColor:'#10b981',borderRadius:6}]},options:{...chartOptionsAcoes(),plugins:{...chartOptionsAcoes().plugins,legend:{display:false}}}});
  chartAnalistas=new Chart(document.getElementById('chartAnalistas'),{type:'bar',data:{labels:analystData.labels,datasets:[{data:analystData.counts,backgroundColor:'#06b6d4',borderRadius:6}]},options:{...base,plugins:{...base.plugins,legend:{display:false}},onHover:(evt,els)=>{evt.native.target.style.cursor=els.length?'pointer':'default'},onClick:(evt,els)=>{if(!els.length)return;const nome=analystData.labels[els[0].index];filterAcoesPorAnalista(nome)}}});
 }
 
@@ -610,6 +637,9 @@ function filterAcoesPorAnalista(nomeAnalista){
  const linha=analystMatrixData.find(r=>r.analista===nomeAnalista);
  if(!linha||!chartAcoes)return;
  const counts=actionData.labels.map(a=>linha[a]||0);
+ // Total do analista (já vem em linha.total); fallback pela soma das ações filtradas.
+ const totalAnalista=Number(linha.total)||counts.reduce((s,v)=>s+(Number(v)||0),0);
+ totalAcoesTooltip=totalAnalista;
  chartAcoes.data.datasets[0].data=counts;
  chartAcoes.data.datasets[0].backgroundColor='#06b6d4';
  chartAcoes.update();
@@ -620,6 +650,7 @@ function filterAcoesPorAnalista(nomeAnalista){
 }
 function resetAcoesChart(){
  if(!chartAcoes)return;
+ totalAcoesTooltip=totalRegistros;
  chartAcoes.data.datasets[0].data=actionData.counts;
  chartAcoes.data.datasets[0].backgroundColor='#10b981';
  chartAcoes.update();
