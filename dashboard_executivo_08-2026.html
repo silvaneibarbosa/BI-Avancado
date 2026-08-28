@@ -30,7 +30,7 @@
       <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-indigo-600 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-500/20"><i class="fa-solid fa-chart-line text-white"></i></div>
       <div>
         <div class="flex flex-wrap items-center gap-2"><h1 class="text-lg font-extrabold tracking-tight">Relatório N1 → N2</h1><span class="text-xs px-2.5 py-1 rounded-full bg-indigo-500/15 text-indigo-300 border border-indigo-500/25">08/2026</span></div>
-        <p class="text-xs text-slate-400">704 registros • 03/08/2026 a 28/08/2026</p>
+        <p class="text-xs text-slate-400">707 registros • 03/08/2026 a 28/08/2026</p>
       </div>
     </div>
     <div class="flex items-center gap-2">
@@ -48,11 +48,11 @@
 
   <section id="viewDashboard" class="space-y-6">
     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4">
-      <div class="glass kpi-card rounded-2xl p-5"><span class="text-[11px] uppercase tracking-wider font-bold text-slate-400">Demandas N2</span><div class="text-3xl font-extrabold mt-2">704</div><p class="text-xs text-slate-400 mt-2">Registros analisados</p><i class="fa-solid fa-ticket absolute right-4 bottom-3 text-5xl opacity-5"></i></div>
-      <div class="glass kpi-card rounded-2xl p-5"><span class="text-[11px] uppercase tracking-wider font-bold text-slate-400">Dúvidas</span><div class="text-3xl font-extrabold mt-2 text-indigo-400">277</div><p class="text-xs text-slate-400 mt-2">39.3% do total</p><i class="fa-solid fa-circle-question absolute right-4 bottom-3 text-5xl text-indigo-400 opacity-5"></i></div>
+      <div class="glass kpi-card rounded-2xl p-5"><span class="text-[11px] uppercase tracking-wider font-bold text-slate-400">Demandas N2</span><div class="text-3xl font-extrabold mt-2">707</div><p class="text-xs text-slate-400 mt-2">Registros analisados</p><i class="fa-solid fa-ticket absolute right-4 bottom-3 text-5xl opacity-5"></i></div>
+      <div class="glass kpi-card rounded-2xl p-5"><span class="text-[11px] uppercase tracking-wider font-bold text-slate-400">Dúvidas</span><div class="text-3xl font-extrabold mt-2 text-indigo-400">277</div><p class="text-xs text-slate-400 mt-2">39.2% do total</p><i class="fa-solid fa-circle-question absolute right-4 bottom-3 text-5xl text-indigo-400 opacity-5"></i></div>
       <div class="glass kpi-card rounded-2xl p-5"><span class="text-[11px] uppercase tracking-wider font-bold text-slate-400">Redmine</span><div class="text-3xl font-extrabold mt-2 text-rose-400">134</div><p class="text-xs text-slate-400 mt-2">19.0% do total</p><i class="fa-solid fa-code-pull-request absolute right-4 bottom-3 text-5xl text-rose-400 opacity-5"></i></div>
       <div class="glass kpi-card rounded-2xl p-5"><span class="text-[11px] uppercase tracking-wider font-bold text-slate-400">Falta de Dados</span><div class="text-3xl font-extrabold mt-2 text-amber-400">46</div><p class="text-xs text-slate-400 mt-2">6.5% do total</p><i class="fa-solid fa-triangle-exclamation absolute right-4 bottom-3 text-5xl text-amber-400 opacity-5"></i></div>
-      <div class="glass kpi-card rounded-2xl p-5"><span class="text-[11px] uppercase tracking-wider font-bold text-slate-400">Módulo principal</span><div class="text-xl font-extrabold mt-3 truncate" title="Folha de Pagamento">Folha de Pagamento</div><p class="text-xs text-emerald-400 mt-2">35.4% • top 2: 62.9%</p><i class="fa-solid fa-diagram-project absolute right-4 bottom-3 text-5xl text-emerald-400 opacity-5"></i></div>
+      <div class="glass kpi-card rounded-2xl p-5"><span class="text-[11px] uppercase tracking-wider font-bold text-slate-400">Módulo principal</span><div class="text-xl font-extrabold mt-3 truncate" title="Folha de Pagamento">Folha de Pagamento</div><p class="text-xs text-emerald-400 mt-2">35.4% • top 2: 62.8%</p><i class="fa-solid fa-diagram-project absolute right-4 bottom-3 text-5xl text-emerald-400 opacity-5"></i></div>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -61,8 +61,8 @@
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-      <div class="glass rounded-2xl p-6 lg:col-span-7"><div class="mb-3"><h2 class="section-title font-bold"><i class="fa-solid fa-sliders text-emerald-400 mr-2"></i>Tipos de Ação</h2><p class="text-xs text-slate-400 mt-1">Direcionamento registrado após a análise</p></div><div class="h-80"><canvas id="chartAcoes"></canvas></div></div>
-      <div class="glass rounded-2xl p-6 lg:col-span-5"><div class="mb-3"><h2 class="section-title font-bold"><i class="fa-solid fa-users-gear text-cyan-400 mr-2"></i>Analistas N2</h2><p class="text-xs text-slate-400 mt-1">Volume de registros por analista</p></div><div class="h-80"><canvas id="chartAnalistas"></canvas></div></div>
+      <div class="glass rounded-2xl p-6 lg:col-span-7"><div class="mb-3 flex items-start justify-between gap-2"><div><h2 class="section-title font-bold"><i class="fa-solid fa-sliders text-emerald-400 mr-2"></i>Tipos de Ação</h2><p class="text-xs text-slate-400 mt-1">Direcionamento registrado após a análise</p></div><button id="acoesFilterBadge" onclick="resetAcoesChart()" class="hidden shrink-0 items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/25 hover:bg-cyan-500/25"><i class="fa-solid fa-filter"></i><span id="acoesFilterNome"></span><i class="fa-solid fa-xmark ml-1"></i></button></div><div class="h-80"><canvas id="chartAcoes"></canvas></div></div>
+      <div class="glass rounded-2xl p-6 lg:col-span-5"><div class="mb-3"><h2 class="section-title font-bold"><i class="fa-solid fa-users-gear text-cyan-400 mr-2"></i>Analistas N2</h2><p class="text-xs text-slate-400 mt-1">Volume de registros por analista • clique numa barra para filtrar os Tipos de Ação</p></div><div class="h-80"><canvas id="chartAnalistas"></canvas></div></div>
     </div>
 
     <div class="glass rounded-2xl p-6">
@@ -90,11 +90,11 @@
         <div class="mt-4 space-y-2">
           
           <div class="flex items-center justify-between text-xs">
-            <span class="text-slate-300">Própria</span><strong>611 <span class="text-slate-500">(86.8%)</span></strong>
+            <span class="text-slate-300">Própria</span><strong>613 <span class="text-slate-500">(86.7%)</span></strong>
           </div>
           
           <div class="flex items-center justify-between text-xs">
-            <span class="text-slate-300">Terceiros</span><strong>93 <span class="text-slate-500">(13.2%)</span></strong>
+            <span class="text-slate-300">Terceiros</span><strong>94 <span class="text-slate-500">(13.3%)</span></strong>
           </div>
           
         </div>
@@ -115,16 +115,16 @@
             <div class="mt-2 h-2 bg-slate-800 rounded-full overflow-hidden">
               <div class="h-full bg-indigo-500 rounded-full" style="width:65.8%"></div>
             </div>
-            <div class="text-xs text-slate-500 mt-2">463 demandas</div>
+            <div class="text-xs text-slate-500 mt-2">465 demandas</div>
           </div>
           
           <div class="rounded-xl bg-slate-900/60 border border-slate-800 p-4">
             <div class="flex items-center justify-between">
               <span class="font-semibold text-sm">Fiscal</span>
-              <span class="text-xs text-slate-400">16.8%</span>
+              <span class="text-xs text-slate-400">16.7%</span>
             </div>
             <div class="mt-2 h-2 bg-slate-800 rounded-full overflow-hidden">
-              <div class="h-full bg-indigo-500 rounded-full" style="width:16.8%"></div>
+              <div class="h-full bg-indigo-500 rounded-full" style="width:16.7%"></div>
             </div>
             <div class="text-xs text-slate-500 mt-2">118 demandas</div>
           </div>
@@ -132,12 +132,12 @@
           <div class="rounded-xl bg-slate-900/60 border border-slate-800 p-4">
             <div class="flex items-center justify-between">
               <span class="font-semibold text-sm">Rio Verde</span>
-              <span class="text-xs text-slate-400">12.8%</span>
+              <span class="text-xs text-slate-400">12.9%</span>
             </div>
             <div class="mt-2 h-2 bg-slate-800 rounded-full overflow-hidden">
-              <div class="h-full bg-indigo-500 rounded-full" style="width:12.8%"></div>
+              <div class="h-full bg-indigo-500 rounded-full" style="width:12.9%"></div>
             </div>
-            <div class="text-xs text-slate-500 mt-2">90 demandas</div>
+            <div class="text-xs text-slate-500 mt-2">91 demandas</div>
           </div>
           
           <div class="rounded-xl bg-slate-900/60 border border-slate-800 p-4">
@@ -298,13 +298,13 @@
           <div class="flex items-center justify-between gap-2 mb-3">
             <span class="text-xs font-bold text-indigo-400">Recomendação 1</span>
             
-            <span class="text-[10px] px-2 py-1 rounded bg-slate-800 text-slate-300">39.3% dos casos</span>
+            <span class="text-[10px] px-2 py-1 rounded bg-slate-800 text-slate-300">39.2% dos casos</span>
             
           </div>
           <h3 class="font-bold text-sm mb-2">Treinamento focal nos módulos de maior volume de dúvidas</h3>
           <p class="text-xs text-slate-300 leading-relaxed mb-4">Concentrar capacitação do N1 nos módulos Folha de Pagamento, e-Social, que concentram a maior parte das 277 dúvidas encaminhadas.</p>
           <div class="text-[11px] text-slate-400 bg-slate-950/60 rounded-xl p-3">
-            <strong class="text-slate-300">Evidência:</strong> Dúvida + Dúvida Chat = 277 (39.3% do total).
+            <strong class="text-slate-300">Evidência:</strong> Dúvida + Dúvida Chat = 277 (39.2% do total).
           </div>
         </div>
         
@@ -515,10 +515,10 @@
                       <div class="text-[10px] text-slate-500 mt-0.5">Folha de Pagamento</div>
                     </td>
                     <td class="text-center px-2 py-3 font-extrabold text-violet-300">11</td>
-                    <td class="text-center px-2 py-3 text-slate-300">36</td>
+                    <td class="text-center px-2 py-3 text-slate-300">37</td>
                     <td class="text-center px-3 py-3">
                       <span class="inline-flex px-2 py-1 rounded-full bg-violet-500/15 text-violet-300 font-bold">
-                        30.6%
+                        29.7%
                       </span>
                     </td>
                   </tr>
@@ -568,7 +568,7 @@
       </div>
     </div>
 
-    <div class="glass rounded-2xl p-6"><div class="flex items-center justify-between mb-4"><div><h2 class="font-bold text-lg"><i class="fa-solid fa-brain text-violet-400 mr-2"></i>Análise IA</h2><p class="text-xs text-slate-400 mt-1">Modelo: qwen2.5:7b-instruct • Gerado em 28/08/2026 10:02</p></div></div><div class="prose prose-invert prose-sm max-w-none text-slate-300 leading-relaxed" id="analiseIA"><h2>Análise IA não executada</h2>
+    <div class="glass rounded-2xl p-6"><div class="flex items-center justify-between mb-4"><div><h2 class="font-bold text-lg"><i class="fa-solid fa-brain text-violet-400 mr-2"></i>Análise IA</h2><p class="text-xs text-slate-400 mt-1">Modelo: qwen2.5:7b-instruct • Gerado em 28/08/2026 10:36</p></div></div><div class="prose prose-invert prose-sm max-w-none text-slate-300 leading-relaxed" id="analiseIA"><h2>Análise IA não executada</h2>
 <p>A análise com Ollama está desativada nesta execução. O dashboard foi gerado apenas com os dados factuais.</p></div></div>
 
     <div class="glass rounded-2xl p-6"><h2 class="font-bold"><i class="fa-solid fa-database text-cyan-400 mr-2"></i>Próxima evolução dos dados</h2><p class="text-xs text-slate-400 mt-1 mb-5">A fonte atual permite análise de volume e distribuição, mas não sustenta métricas de tempo, produtividade ou causa raiz.</p><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"><div class="bg-slate-900/60 rounded-xl p-4 border border-slate-800"><div class="text-cyan-400 font-bold text-xs mb-2"><i class="fa-solid fa-circle-plus mr-1"></i>SLA e tempo</div><p class="text-xs text-slate-400">Adicionar abertura, primeira resposta e conclusão.</p></div><div class="bg-slate-900/60 rounded-xl p-4 border border-slate-800"><div class="text-cyan-400 font-bold text-xs mb-2"><i class="fa-solid fa-circle-plus mr-1"></i>Causa raiz</div><p class="text-xs text-slate-400">Criar taxonomia padronizada para classificar a natureza da demanda.</p></div><div class="bg-slate-900/60 rounded-xl p-4 border border-slate-800"><div class="text-cyan-400 font-bold text-xs mb-2"><i class="fa-solid fa-circle-plus mr-1"></i>Esforço</div><p class="text-xs text-slate-400">Registrar TMA e horas apontadas por atendimento.</p></div><div class="bg-slate-900/60 rounded-xl p-4 border border-slate-800"><div class="text-cyan-400 font-bold text-xs mb-2"><i class="fa-solid fa-circle-plus mr-1"></i>FCR N1</div><p class="text-xs text-slate-400">Registrar o volume total recebido pelo N1, inclusive demandas resolvidas no primeiro nível.</p></div></div></div>
@@ -580,34 +580,60 @@
   </section>
 </main>
 
-<footer class="max-w-7xl mx-auto px-4 lg:px-8 py-6 text-center text-xs text-slate-500 border-t border-slate-800/70">Dashboard N1 → N2 • 08/2026 • Gerado em 28/08/2026 10:02 • Desenvolvido por: SilvaneiBarbosa ©</footer>
+<footer class="max-w-7xl mx-auto px-4 lg:px-8 py-6 text-center text-xs text-slate-500 border-t border-slate-800/70">Dashboard N1 → N2 • 08/2026 • Gerado em 28/08/2026 10:36 • Desenvolvido por: SilvaneiBarbosa ©</footer>
 
 <script>
-const categoryData={"labels": ["Folha de Pagamento", "e-Social", "Escrita Fiscal", "Tron Box", "Banco de Dados", "Tron Connect", "Ponto Eletrônico", "Contabilidade", "Laris", "Reinf"], "counts": [249, 194, 90, 51, 37, 25, 23, 13, 7, 7]};
-const subcategoryData={"labels": ["Auditoria de Movimentação (S-1200 / S-1210 / S-2299)", "Rescisão", "Cálculo de Folha Mensal", "Banco de Dados - Ajuste", "Relatórios", "S-2299 – Desligamento", "S-1200 – Remuneração de trabalhador vinculado ao Regime Geral de Previdência Social", "Integração", "S-1210 – Pagamentos de Rendimentos do Trabalho", "Importação NFSe - Arquivo XML"], "counts": [77, 50, 39, 28, 25, 21, 19, 18, 17, 17]};
-const actionData={"labels": ["Dúvida", "Redmine", "Dúvida Chat", "Relacionado", "Script | Fórmula | Ajuste Web", "Falta de Dados", "Feedback", "Ajustado Produto WEB", "Sugestão", "Procedimento Paliativo", "Análise N2 Goiânia", "Ajuste de banco", "Corrigido atualização", "Agendar ajuste de Banco", "Reaberto pelo Cliente"], "counts": [209, 134, 68, 62, 52, 46, 35, 29, 21, 14, 13, 12, 4, 3, 2]};
-const analystData={"labels": ["ALEX ALVES", "INGRID", "RICARDO", "MOISÉS", "SILVANEI", "LUCIANA"], "counts": [163, 161, 143, 117, 96, 24]};
-const matrixData=[{"categoria": "Folha de Pagamento", "total": 249, "Dúvida": 84, "Redmine": 37, "Dúvida Chat": 36, "Relacionado": 11, "Script | Fórmula | Ajuste Web": 32, "Falta de Dados": 15, "Feedback": 13, "Ajustado Produto WEB": 0, "Sugestão": 14, "Procedimento Paliativo": 4}, {"categoria": "e-Social", "total": 194, "Dúvida": 64, "Redmine": 40, "Dúvida Chat": 30, "Relacionado": 15, "Script | Fórmula | Ajuste Web": 2, "Falta de Dados": 19, "Feedback": 12, "Ajustado Produto WEB": 0, "Sugestão": 0, "Procedimento Paliativo": 8}, {"categoria": "Escrita Fiscal", "total": 90, "Dúvida": 27, "Redmine": 18, "Dúvida Chat": 0, "Relacionado": 26, "Script | Fórmula | Ajuste Web": 4, "Falta de Dados": 4, "Feedback": 0, "Ajustado Produto WEB": 0, "Sugestão": 2, "Procedimento Paliativo": 0}, {"categoria": "Tron Box", "total": 51, "Dúvida": 13, "Redmine": 12, "Dúvida Chat": 0, "Relacionado": 1, "Script | Fórmula | Ajuste Web": 6, "Falta de Dados": 2, "Feedback": 0, "Ajustado Produto WEB": 14, "Sugestão": 0, "Procedimento Paliativo": 1}, {"categoria": "Banco de Dados", "total": 37, "Dúvida": 1, "Redmine": 14, "Dúvida Chat": 0, "Relacionado": 0, "Script | Fórmula | Ajuste Web": 0, "Falta de Dados": 2, "Feedback": 8, "Ajustado Produto WEB": 0, "Sugestão": 0, "Procedimento Paliativo": 0}, {"categoria": "Tron Connect", "total": 25, "Dúvida": 1, "Redmine": 2, "Dúvida Chat": 0, "Relacionado": 5, "Script | Fórmula | Ajuste Web": 1, "Falta de Dados": 1, "Feedback": 0, "Ajustado Produto WEB": 14, "Sugestão": 0, "Procedimento Paliativo": 0}, {"categoria": "Ponto Eletrônico", "total": 23, "Dúvida": 8, "Redmine": 1, "Dúvida Chat": 2, "Relacionado": 3, "Script | Fórmula | Ajuste Web": 4, "Falta de Dados": 2, "Feedback": 1, "Ajustado Produto WEB": 0, "Sugestão": 0, "Procedimento Paliativo": 0}, {"categoria": "Contabilidade", "total": 13, "Dúvida": 5, "Redmine": 4, "Dúvida Chat": 0, "Relacionado": 0, "Script | Fórmula | Ajuste Web": 2, "Falta de Dados": 0, "Feedback": 0, "Ajustado Produto WEB": 0, "Sugestão": 2, "Procedimento Paliativo": 0}, {"categoria": "Laris", "total": 7, "Dúvida": 3, "Redmine": 3, "Dúvida Chat": 0, "Relacionado": 0, "Script | Fórmula | Ajuste Web": 0, "Falta de Dados": 0, "Feedback": 0, "Ajustado Produto WEB": 1, "Sugestão": 0, "Procedimento Paliativo": 0}, {"categoria": "Reinf", "total": 7, "Dúvida": 1, "Redmine": 1, "Dúvida Chat": 0, "Relacionado": 1, "Script | Fórmula | Ajuste Web": 1, "Falta de Dados": 0, "Feedback": 0, "Ajustado Produto WEB": 0, "Sugestão": 2, "Procedimento Paliativo": 0}];
+const categoryData={"labels": ["Folha de Pagamento", "e-Social", "Escrita Fiscal", "Tron Box", "Banco de Dados", "Tron Connect", "Ponto Eletrônico", "Contabilidade", "Laris", "Reinf"], "counts": [250, 194, 91, 51, 38, 25, 23, 13, 7, 7]};
+const subcategoryData={"labels": ["Auditoria de Movimentação (S-1200 / S-1210 / S-2299)", "Rescisão", "Cálculo de Folha Mensal", "Banco de Dados - Ajuste", "Relatórios", "S-2299 – Desligamento", "S-1200 – Remuneração de trabalhador vinculado ao Regime Geral de Previdência Social", "Integração", "S-1210 – Pagamentos de Rendimentos do Trabalho", "Importação NFSe - Arquivo XML"], "counts": [77, 50, 40, 28, 25, 21, 19, 19, 17, 17]};
+const actionData={"labels": ["Dúvida", "Redmine", "Dúvida Chat", "Relacionado", "Script | Fórmula | Ajuste Web", "Falta de Dados", "Feedback", "Ajustado Produto WEB", "Sugestão", "Procedimento Paliativo", "Análise N2 Goiânia", "Ajuste de banco", "Agendar ajuste de Banco", "Corrigido atualização", "Reaberto pelo Cliente"], "counts": [209, 134, 68, 62, 52, 46, 36, 29, 21, 14, 14, 12, 4, 4, 2]};
+const analystData={"labels": ["ALEX ALVES", "INGRID", "RICARDO", "MOISÉS", "SILVANEI", "LUCIANA"], "counts": [164, 162, 143, 117, 96, 25]};
+const matrixData=[{"categoria": "Folha de Pagamento", "total": 250, "Dúvida": 84, "Redmine": 37, "Dúvida Chat": 36, "Relacionado": 11, "Script | Fórmula | Ajuste Web": 32, "Falta de Dados": 15, "Feedback": 14, "Ajustado Produto WEB": 0, "Sugestão": 14, "Procedimento Paliativo": 4}, {"categoria": "e-Social", "total": 194, "Dúvida": 64, "Redmine": 40, "Dúvida Chat": 30, "Relacionado": 15, "Script | Fórmula | Ajuste Web": 2, "Falta de Dados": 19, "Feedback": 12, "Ajustado Produto WEB": 0, "Sugestão": 0, "Procedimento Paliativo": 8}, {"categoria": "Escrita Fiscal", "total": 91, "Dúvida": 27, "Redmine": 18, "Dúvida Chat": 0, "Relacionado": 26, "Script | Fórmula | Ajuste Web": 4, "Falta de Dados": 4, "Feedback": 0, "Ajustado Produto WEB": 0, "Sugestão": 2, "Procedimento Paliativo": 0}, {"categoria": "Tron Box", "total": 51, "Dúvida": 13, "Redmine": 12, "Dúvida Chat": 0, "Relacionado": 1, "Script | Fórmula | Ajuste Web": 6, "Falta de Dados": 2, "Feedback": 0, "Ajustado Produto WEB": 14, "Sugestão": 0, "Procedimento Paliativo": 1}, {"categoria": "Banco de Dados", "total": 38, "Dúvida": 1, "Redmine": 14, "Dúvida Chat": 0, "Relacionado": 0, "Script | Fórmula | Ajuste Web": 0, "Falta de Dados": 2, "Feedback": 8, "Ajustado Produto WEB": 0, "Sugestão": 0, "Procedimento Paliativo": 0}, {"categoria": "Tron Connect", "total": 25, "Dúvida": 1, "Redmine": 2, "Dúvida Chat": 0, "Relacionado": 5, "Script | Fórmula | Ajuste Web": 1, "Falta de Dados": 1, "Feedback": 0, "Ajustado Produto WEB": 14, "Sugestão": 0, "Procedimento Paliativo": 0}, {"categoria": "Ponto Eletrônico", "total": 23, "Dúvida": 8, "Redmine": 1, "Dúvida Chat": 2, "Relacionado": 3, "Script | Fórmula | Ajuste Web": 4, "Falta de Dados": 2, "Feedback": 1, "Ajustado Produto WEB": 0, "Sugestão": 0, "Procedimento Paliativo": 0}, {"categoria": "Contabilidade", "total": 13, "Dúvida": 5, "Redmine": 4, "Dúvida Chat": 0, "Relacionado": 0, "Script | Fórmula | Ajuste Web": 2, "Falta de Dados": 0, "Feedback": 0, "Ajustado Produto WEB": 0, "Sugestão": 2, "Procedimento Paliativo": 0}, {"categoria": "Laris", "total": 7, "Dúvida": 3, "Redmine": 3, "Dúvida Chat": 0, "Relacionado": 0, "Script | Fórmula | Ajuste Web": 0, "Falta de Dados": 0, "Feedback": 0, "Ajustado Produto WEB": 1, "Sugestão": 0, "Procedimento Paliativo": 0}, {"categoria": "Reinf", "total": 7, "Dúvida": 1, "Redmine": 1, "Dúvida Chat": 0, "Relacionado": 1, "Script | Fórmula | Ajuste Web": 1, "Falta de Dados": 0, "Feedback": 0, "Ajustado Produto WEB": 0, "Sugestão": 2, "Procedimento Paliativo": 0}];
 const matrixActions=["Dúvida", "Redmine", "Dúvida Chat", "Relacionado", "Script | Fórmula | Ajuste Web", "Falta de Dados", "Feedback", "Ajustado Produto WEB", "Sugestão", "Procedimento Paliativo"];
+const analystMatrixData=[{"analista": "ALEX ALVES", "total": 164, "Dúvida": 57, "Redmine": 30, "Dúvida Chat": 15, "Relacionado": 9, "Script | Fórmula | Ajuste Web": 16, "Falta de Dados": 18, "Feedback": 8, "Ajustado Produto WEB": 0, "Sugestão": 5, "Procedimento Paliativo": 1, "Análise N2 Goiânia": 0, "Ajuste de banco": 0, "Agendar ajuste de Banco": 2, "Corrigido atualização": 2, "Reaberto pelo Cliente": 1}, {"analista": "INGRID", "total": 162, "Dúvida": 46, "Redmine": 20, "Dúvida Chat": 38, "Relacionado": 17, "Script | Fórmula | Ajuste Web": 8, "Falta de Dados": 10, "Feedback": 7, "Ajustado Produto WEB": 0, "Sugestão": 4, "Procedimento Paliativo": 6, "Análise N2 Goiânia": 0, "Ajuste de banco": 5, "Agendar ajuste de Banco": 0, "Corrigido atualização": 1, "Reaberto pelo Cliente": 0}, {"analista": "RICARDO", "total": 143, "Dúvida": 37, "Redmine": 36, "Dúvida Chat": 15, "Relacionado": 8, "Script | Fórmula | Ajuste Web": 11, "Falta de Dados": 6, "Feedback": 20, "Ajustado Produto WEB": 0, "Sugestão": 5, "Procedimento Paliativo": 5, "Análise N2 Goiânia": 0, "Ajuste de banco": 0, "Agendar ajuste de Banco": 0, "Corrigido atualização": 0, "Reaberto pelo Cliente": 0}, {"analista": "MOISÉS", "total": 117, "Dúvida": 27, "Redmine": 28, "Dúvida Chat": 0, "Relacionado": 17, "Script | Fórmula | Ajuste Web": 10, "Falta de Dados": 5, "Feedback": 1, "Ajustado Produto WEB": 22, "Sugestão": 3, "Procedimento Paliativo": 0, "Análise N2 Goiânia": 1, "Ajuste de banco": 3, "Agendar ajuste de Banco": 0, "Corrigido atualização": 0, "Reaberto pelo Cliente": 0}, {"analista": "SILVANEI", "total": 96, "Dúvida": 34, "Redmine": 20, "Dúvida Chat": 0, "Relacionado": 11, "Script | Fórmula | Ajuste Web": 7, "Falta de Dados": 6, "Feedback": 0, "Ajustado Produto WEB": 7, "Sugestão": 4, "Procedimento Paliativo": 2, "Análise N2 Goiânia": 0, "Ajuste de banco": 1, "Agendar ajuste de Banco": 2, "Corrigido atualização": 1, "Reaberto pelo Cliente": 1}, {"analista": "LUCIANA", "total": 25, "Dúvida": 8, "Redmine": 0, "Dúvida Chat": 0, "Relacionado": 0, "Script | Fórmula | Ajuste Web": 0, "Falta de Dados": 1, "Feedback": 0, "Ajustado Produto WEB": 0, "Sugestão": 0, "Procedimento Paliativo": 0, "Análise N2 Goiânia": 13, "Ajuste de banco": 3, "Agendar ajuste de Banco": 0, "Corrigido atualização": 0, "Reaberto pelo Cliente": 0}];
 const techData=[{"duvida": 17, "duvida_chat": 8, "falta_dados": 8, "nome": "Marliete Silva Macedo", "percentual_duvida": 36.17021276595745, "total": 33, "total_enviados": 47}, {"duvida": 14, "duvida_chat": 2, "falta_dados": 3, "nome": "Simone Selle", "percentual_duvida": 43.75, "total": 19, "total_enviados": 32}, {"duvida": 11, "duvida_chat": 5, "falta_dados": 0, "nome": "Ivoneide Ol\u00edmpia Gomes", "percentual_duvida": 36.666666666666664, "total": 16, "total_enviados": 30}, {"duvida": 11, "duvida_chat": 2, "falta_dados": 3, "nome": "Rafael Furtado Rocha", "percentual_duvida": 45.83333333333333, "total": 16, "total_enviados": 24}, {"duvida": 10, "duvida_chat": 7, "falta_dados": 3, "nome": "Maria Ant\u00f4nia Pedrosa Da Silva Uch\u00f4a", "percentual_duvida": 28.57142857142857, "total": 20, "total_enviados": 35}, {"duvida": 9, "duvida_chat": 1, "falta_dados": 1, "nome": "Amanda Joventino De Sousa", "percentual_duvida": 31.03448275862069, "total": 11, "total_enviados": 29}, {"duvida": 9, "duvida_chat": 0, "falta_dados": 2, "nome": "Ivete Alc\u00e2ntara Bsb", "percentual_duvida": 39.130434782608695, "total": 11, "total_enviados": 23}, {"duvida": 8, "duvida_chat": 2, "falta_dados": 1, "nome": "Nayara Fernanda Da Nobrega", "percentual_duvida": 42.10526315789473, "total": 11, "total_enviados": 19}, {"duvida": 8, "duvida_chat": 0, "falta_dados": 1, "nome": "Isadora Alves Souza Farias", "percentual_duvida": 50.0, "total": 9, "total_enviados": 16}, {"duvida": 7, "duvida_chat": 0, "falta_dados": 1, "nome": "Lauane Oliveira Da Silva", "percentual_duvida": 46.666666666666664, "total": 8, "total_enviados": 15}];
-const totalRegistros=704;
+const totalRegistros=707;
+
+let chartAcoes=null;
+let chartAnalistas=null;
 
 function chartOptions(){return {responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#94a3b8',font:{size:10}}},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.raw} (${totalRegistros?((c.raw/totalRegistros)*100).toFixed(1):0}%)`}}},scales:{x:{ticks:{color:'#94a3b8',font:{size:10}},grid:{display:false}},y:{ticks:{color:'#94a3b8'},grid:{color:'rgba(148,163,184,.08)'}}}}}
 function initCharts(){
  const base=chartOptions();
  new Chart(document.getElementById('chartCategorias'),{type:'doughnut',data:{labels:categoryData.labels,datasets:[{data:categoryData.counts,backgroundColor:['#6366f1','#3b82f6','#06b6d4','#10b981','#f59e0b','#ec4899','#8b5cf6','#14b8a6','#f97316','#64748b'],borderWidth:2,borderColor:'#1e293b'}]},options:{...base,scales:{}}});
  new Chart(document.getElementById('chartSubcategorias'),{type:'bar',data:{labels:subcategoryData.labels,datasets:[{data:subcategoryData.counts,backgroundColor:'#8b5cf6',borderRadius:6}]},options:{...base,indexAxis:'y',plugins:{...base.plugins,legend:{display:false}}}});
- new Chart(document.getElementById('chartAcoes'),{type:'bar',data:{labels:actionData.labels,datasets:[{data:actionData.counts,backgroundColor:'#10b981',borderRadius:6}]},options:{...base,plugins:{...base.plugins,legend:{display:false}}}});
- new Chart(document.getElementById('chartAnalistas'),{type:'bar',data:{labels:analystData.labels,datasets:[{data:analystData.counts,backgroundColor:'#06b6d4',borderRadius:6}]},options:{...base,plugins:{...base.plugins,legend:{display:false}}}});
+ chartAcoes=new Chart(document.getElementById('chartAcoes'),{type:'bar',data:{labels:actionData.labels,datasets:[{data:actionData.counts,backgroundColor:'#10b981',borderRadius:6}]},options:{...base,plugins:{...base.plugins,legend:{display:false}}}});
+ chartAnalistas=new Chart(document.getElementById('chartAnalistas'),{type:'bar',data:{labels:analystData.labels,datasets:[{data:analystData.counts,backgroundColor:'#06b6d4',borderRadius:6}]},options:{...base,plugins:{...base.plugins,legend:{display:false}},onHover:(evt,els)=>{evt.native.target.style.cursor=els.length?'pointer':'default'},onClick:(evt,els)=>{if(!els.length)return;const nome=analystData.labels[els[0].index];filterAcoesPorAnalista(nome)}}});
+}
+
+// Drill-down: filtra o gráfico "Tipos de Ação" pelo analista clicado em "Analistas N2"
+function filterAcoesPorAnalista(nomeAnalista){
+ const linha=analystMatrixData.find(r=>r.analista===nomeAnalista);
+ if(!linha||!chartAcoes)return;
+ const counts=actionData.labels.map(a=>linha[a]||0);
+ chartAcoes.data.datasets[0].data=counts;
+ chartAcoes.data.datasets[0].backgroundColor='#06b6d4';
+ chartAcoes.update();
+ const badge=document.getElementById('acoesFilterBadge');
+ document.getElementById('acoesFilterNome').innerText=nomeAnalista;
+ badge.classList.remove('hidden');
+ badge.classList.add('inline-flex');
+}
+function resetAcoesChart(){
+ if(!chartAcoes)return;
+ chartAcoes.data.datasets[0].data=actionData.counts;
+ chartAcoes.data.datasets[0].backgroundColor='#10b981';
+ chartAcoes.update();
+ document.getElementById('acoesFilterBadge').classList.add('hidden');
+ document.getElementById('acoesFilterBadge').classList.remove('inline-flex');
 }
 function renderMatrix(filter='ALL'){const body=document.getElementById('matrixBody');body.innerHTML='';const rows=filter==='ALL'?matrixData:matrixData.filter(r=>r.categoria===filter);rows.forEach(r=>{const tr=document.createElement('tr');tr.className='hover:bg-slate-800/40';let html=`<td class="px-3 py-2.5 font-bold sticky left-0 bg-slate-900">${escapeHtml(r.categoria)}</td>`;matrixActions.forEach(a=>{html+=`<td class="px-3 py-2.5 text-center">${r[a]||'-'}</td>`});html+=`<td class="px-3 py-2.5 text-center font-extrabold">${r.total}</td>`;tr.innerHTML=html;body.appendChild(tr)})}
 function escapeHtml(v){return String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
 function switchView(mode){const d=document.getElementById('viewDashboard'),s=document.getElementById('viewSlides'),bd=document.getElementById('btnDash'),bs=document.getElementById('btnSlides');if(mode==='dashboard'){d.classList.remove('hidden');s.classList.add('hidden');bd.className='px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600';bs.className='px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400'}else{d.classList.add('hidden');s.classList.remove('hidden');bs.className='px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600';bd.className='px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400';renderSlide(currentSlide)}}
 let currentSlide=1;
 const slides=[
- {title:'1. Visão geral',html:`<div class="space-y-6"><div><div class="text-indigo-400 text-xs font-bold uppercase">Período 08/2026</div><h3 class="text-2xl font-extrabold mt-2">Fluxo de demandas N1 → N2</h3><p class="text-sm text-slate-400 mt-2">704 registros entre 03/08/2026 e 28/08/2026.</p></div><div class="grid md:grid-cols-3 gap-4"> <div class="bg-slate-900/60 p-5 rounded-xl"><b class="text-3xl">704</b><div class="text-xs text-slate-400 mt-1">Demandas analisadas</div></div><div class="bg-slate-900/60 p-5 rounded-xl"><b class="text-3xl text-indigo-400">39.3%</b><div class="text-xs text-slate-400 mt-1">Dúvidas</div></div><div class="bg-slate-900/60 p-5 rounded-xl"><b class="text-3xl text-rose-400">19.0%</b><div class="text-xs text-slate-400 mt-1">Redmine</div></div></div><div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-sm text-slate-300">A leitura deve ser feita como distribuição das demandas encaminhadas, não como indicador de produtividade ou qualidade.</div></div>`},
- {title:'2. Concentração por categoria',html:`<div class="space-y-5"><h3 class="text-xl font-bold">Onde está concentrado o volume?</h3><div><div class="flex justify-between text-xs mb-1"><span>Folha de Pagamento</span><b>249 (35.4%)</b></div><div class="h-3 bg-slate-900 rounded-full overflow-hidden"><div class="h-full bg-indigo-500 rounded-full" style="width:35.4%"></div></div></div><div><div class="flex justify-between text-xs mb-1"><span>e-Social</span><b>194 (27.6%)</b></div><div class="h-3 bg-slate-900 rounded-full overflow-hidden"><div class="h-full bg-indigo-500 rounded-full" style="width:27.6%"></div></div></div><div><div class="flex justify-between text-xs mb-1"><span>Escrita Fiscal</span><b>90 (12.8%)</b></div><div class="h-3 bg-slate-900 rounded-full overflow-hidden"><div class="h-full bg-indigo-500 rounded-full" style="width:12.8%"></div></div></div><div><div class="flex justify-between text-xs mb-1"><span>Tron Box</span><b>51 (7.2%)</b></div><div class="h-3 bg-slate-900 rounded-full overflow-hidden"><div class="h-full bg-indigo-500 rounded-full" style="width:7.2%"></div></div></div><div><div class="flex justify-between text-xs mb-1"><span>Banco de Dados</span><b>37 (5.3%)</b></div><div class="h-3 bg-slate-900 rounded-full overflow-hidden"><div class="h-full bg-indigo-500 rounded-full" style="width:5.3%"></div></div></div><div class="p-4 bg-slate-900/60 rounded-xl text-xs text-slate-300">Top 2 categorias representam <strong>62.9%</strong> do volume.</div></div>`},
- {title:'3. Natureza das ações',html:`<div class="space-y-5"><h3 class="text-xl font-bold">Como as demandas foram direcionadas?</h3><div class="grid md:grid-cols-2 gap-4"><div class="p-5 rounded-xl bg-indigo-500/10 border border-indigo-500/20"><b class="text-3xl text-indigo-400">39.3%</b><p class="font-bold mt-2">Dúvidas</p><p class="text-xs text-slate-400 mt-1">277 registros.</p></div><div class="p-5 rounded-xl bg-rose-500/10 border border-rose-500/20"><b class="text-3xl text-rose-400">19.0%</b><p class="font-bold mt-2">Redmine</p><p class="text-xs text-slate-400 mt-1">134 registros.</p></div><div class="p-5 rounded-xl bg-amber-500/10 border border-amber-500/20"><b class="text-3xl text-amber-400">6.5%</b><p class="font-bold mt-2">Falta de Dados</p><p class="text-xs text-slate-400 mt-1">46 registros.</p></div><div class="p-5 rounded-xl bg-slate-800/60"><b class="text-3xl">8.8%</b><p class="font-bold mt-2">Relacionado</p><p class="text-xs text-slate-400 mt-1">62 registros.</p></div></div></div>`},
+ {title:'1. Visão geral',html:`<div class="space-y-6"><div><div class="text-indigo-400 text-xs font-bold uppercase">Período 08/2026</div><h3 class="text-2xl font-extrabold mt-2">Fluxo de demandas N1 → N2</h3><p class="text-sm text-slate-400 mt-2">707 registros entre 03/08/2026 e 28/08/2026.</p></div><div class="grid md:grid-cols-3 gap-4"> <div class="bg-slate-900/60 p-5 rounded-xl"><b class="text-3xl">707</b><div class="text-xs text-slate-400 mt-1">Demandas analisadas</div></div><div class="bg-slate-900/60 p-5 rounded-xl"><b class="text-3xl text-indigo-400">39.2%</b><div class="text-xs text-slate-400 mt-1">Dúvidas</div></div><div class="bg-slate-900/60 p-5 rounded-xl"><b class="text-3xl text-rose-400">19.0%</b><div class="text-xs text-slate-400 mt-1">Redmine</div></div></div><div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-sm text-slate-300">A leitura deve ser feita como distribuição das demandas encaminhadas, não como indicador de produtividade ou qualidade.</div></div>`},
+ {title:'2. Concentração por categoria',html:`<div class="space-y-5"><h3 class="text-xl font-bold">Onde está concentrado o volume?</h3><div><div class="flex justify-between text-xs mb-1"><span>Folha de Pagamento</span><b>250 (35.4%)</b></div><div class="h-3 bg-slate-900 rounded-full overflow-hidden"><div class="h-full bg-indigo-500 rounded-full" style="width:35.4%"></div></div></div><div><div class="flex justify-between text-xs mb-1"><span>e-Social</span><b>194 (27.4%)</b></div><div class="h-3 bg-slate-900 rounded-full overflow-hidden"><div class="h-full bg-indigo-500 rounded-full" style="width:27.4%"></div></div></div><div><div class="flex justify-between text-xs mb-1"><span>Escrita Fiscal</span><b>91 (12.9%)</b></div><div class="h-3 bg-slate-900 rounded-full overflow-hidden"><div class="h-full bg-indigo-500 rounded-full" style="width:12.9%"></div></div></div><div><div class="flex justify-between text-xs mb-1"><span>Tron Box</span><b>51 (7.2%)</b></div><div class="h-3 bg-slate-900 rounded-full overflow-hidden"><div class="h-full bg-indigo-500 rounded-full" style="width:7.2%"></div></div></div><div><div class="flex justify-between text-xs mb-1"><span>Banco de Dados</span><b>38 (5.4%)</b></div><div class="h-3 bg-slate-900 rounded-full overflow-hidden"><div class="h-full bg-indigo-500 rounded-full" style="width:5.4%"></div></div></div><div class="p-4 bg-slate-900/60 rounded-xl text-xs text-slate-300">Top 2 categorias representam <strong>62.8%</strong> do volume.</div></div>`},
+ {title:'3. Natureza das ações',html:`<div class="space-y-5"><h3 class="text-xl font-bold">Como as demandas foram direcionadas?</h3><div class="grid md:grid-cols-2 gap-4"><div class="p-5 rounded-xl bg-indigo-500/10 border border-indigo-500/20"><b class="text-3xl text-indigo-400">39.2%</b><p class="font-bold mt-2">Dúvidas</p><p class="text-xs text-slate-400 mt-1">277 registros.</p></div><div class="p-5 rounded-xl bg-rose-500/10 border border-rose-500/20"><b class="text-3xl text-rose-400">19.0%</b><p class="font-bold mt-2">Redmine</p><p class="text-xs text-slate-400 mt-1">134 registros.</p></div><div class="p-5 rounded-xl bg-amber-500/10 border border-amber-500/20"><b class="text-3xl text-amber-400">6.5%</b><p class="font-bold mt-2">Falta de Dados</p><p class="text-xs text-slate-400 mt-1">46 registros.</p></div><div class="p-5 rounded-xl bg-slate-800/60"><b class="text-3xl">8.8%</b><p class="font-bold mt-2">Relacionado</p><p class="text-xs text-slate-400 mt-1">62 registros.</p></div></div></div>`},
  {title:'4. Recomendações',html:`<div class="space-y-4"><h3 class="text-xl font-bold">Plano de ação</h3><div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800"><span class="text-xs font-bold text-indigo-400">1</span><h4 class="font-bold mt-1">Treinamento focal nos módulos de maior volume de dúvidas</h4><p class="text-xs text-slate-300 mt-1">Concentrar capacitação do N1 nos módulos Folha de Pagamento, e-Social, que concentram a maior parte das 277 dúvidas encaminhadas.</p></div><div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800"><span class="text-xs font-bold text-indigo-400">2</span><h4 class="font-bold mt-1">Acompanhamento do backlog Redmine com Engenharia</h4><p class="text-xs text-slate-300 mt-1">Estabelecer rito periódico de alinhamento sobre os 134 chamados escalados para Desenvolvimento, priorizando os módulos de maior volume.</p></div><div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800"><span class="text-xs font-bold text-indigo-400">3</span><h4 class="font-bold mt-1">Checklist de entrada para reduzir Falta de Dados</h4><p class="text-xs text-slate-300 mt-1">Implementar formulário mínimo obrigatório (print, versão, CNPJ, anexos) para mitigar os 46 casos de informação incompleta.</p></div></div>`},
  {title:'5. Evolução da governança de dados',html:`<div class="space-y-5"><h3 class="text-xl font-bold">O que precisamos medir a seguir?</h3><div class="grid md:grid-cols-2 gap-4"><div class="p-4 bg-slate-900/60 rounded-xl"><b class="text-cyan-400">SLA / timestamps</b><p class="text-xs text-slate-400 mt-1">Abertura, primeira resposta e conclusão.</p></div><div class="p-4 bg-slate-900/60 rounded-xl"><b class="text-cyan-400">Causa raiz</b><p class="text-xs text-slate-400 mt-1">Taxonomia estruturada.</p></div><div class="p-4 bg-slate-900/60 rounded-xl"><b class="text-cyan-400">Esforço</b><p class="text-xs text-slate-400 mt-1">TMA e horas apontadas.</p></div><div class="p-4 bg-slate-900/60 rounded-xl"><b class="text-cyan-400">FCR N1</b><p class="text-xs text-slate-400 mt-1">Volume total recebido pelo N1.</p></div></div></div>`}
 ];
