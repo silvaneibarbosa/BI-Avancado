@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Executivo N1 → N2 — 05/2026</title>
+<title>Dashboard  N1 → Avançado — 05/2026</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { darkMode:'class', theme:{extend:{fontFamily:{sans:['Plus Jakarta Sans','Inter','sans-serif']}}} };
@@ -24,12 +24,12 @@
 </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen antialiased custom-scrollbar">
-<header class="sticky top-0 z-50 glass border-b border-slate-800/70 px-4 lg:px-8 py-3 no-print">
+<!--<header class="sticky top-0 z-50 glass border-b border-slate-800/70 px-4 lg:px-8 py-3 no-print">
   <div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-3">
     <div class="flex items-center gap-3">
       <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-indigo-600 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-500/20"><i class="fa-solid fa-chart-line text-white"></i></div>
       <div>
-        <div class="flex flex-wrap items-center gap-2"><h1 class="text-lg font-extrabold tracking-tight">Relatório N1 → N2</h1><span class="text-xs px-2.5 py-1 rounded-full bg-indigo-500/15 text-indigo-300 border border-indigo-500/25">05/2026</span></div>
+        <div class="flex flex-wrap items-center gap-2"><h1 class="text-lg font-extrabold tracking-tight">Relatório  N1 → Avançado</h1><span class="text-xs px-2.5 py-1 rounded-full bg-indigo-500/15 text-indigo-300 border border-indigo-500/25">05/2026</span></div>
         <p class="text-xs text-slate-400">1064 registros • 01/05/2026 a 30/05/2026</p>
       </div>
     </div>
@@ -39,16 +39,17 @@
       <button onclick="window.print()" class="px-3 py-1.5 rounded-xl bg-slate-800 border border-slate-700 text-xs font-semibold"><i class="fa-solid fa-print mr-1"></i> Imprimir</button>
     </div>
   </div>
-</header>
+</header>-->
 
 <main class="max-w-7xl mx-auto px-4 lg:px-8 py-6 space-y-6">
-  <div class="glass rounded-2xl p-4 border-l-4 border-amber-500 bg-amber-500/5">
-    <div class="flex gap-3"><i class="fa-solid fa-shield-halved text-amber-400 mt-1"></i><div><strong class="text-sm text-amber-300">Escopo e ressalvas</strong><p class="text-xs text-slate-300 mt-1 leading-relaxed">Os dados representam demandas N1 encaminhadas para análise. A fonte não mede SLA, tempo de atendimento, produtividade, qualidade, causa raiz ou resolução definitiva. <strong>Ação</strong> representa o direcionamento registrado no ticket.</p></div></div>
-  </div>
+      <div>
+        <div class="flex flex-wrap items-center gap-2"><h1 class="text-lg font-extrabold tracking-tight">Relatório  N1 → Avançado</h1><span class="text-xs px-2.5 py-1 rounded-full bg-indigo-500/15 text-indigo-300 border border-indigo-500/25">05/2026</span></div>
+        <p class="text-xs text-slate-400">1064 registros • 01/05/2026 a 30/05/2026</p>
+      </div>
 
   <section id="viewDashboard" class="space-y-6">
     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4">
-      <div class="glass kpi-card rounded-2xl p-5"><span class="text-[11px] uppercase tracking-wider font-bold text-slate-400">Demandas N2 Matriz</span><div class="text-3xl font-extrabold mt-2">790</div><p class="text-xs text-slate-400 mt-2">Alex, Ingrid, Moisés, Ricardo, Silvanei</p><i class="fa-solid fa-ticket absolute right-4 bottom-3 text-5xl opacity-5"></i></div>
+      <div class="glass kpi-card rounded-2xl p-5"><span class="text-[11px] uppercase tracking-wider font-bold text-slate-400">Demandas Matriz</span><div class="text-3xl font-extrabold mt-2">790</div><p class="text-xs text-slate-400 mt-2">Alex, Ingrid, Moisés, Ricardo, Silvanei</p><i class="fa-solid fa-ticket absolute right-4 bottom-3 text-5xl opacity-5"></i></div>
       <div class="glass kpi-card rounded-2xl p-5"><span class="text-[11px] uppercase tracking-wider font-bold text-slate-400">Dúvidas</span><div class="text-3xl font-extrabold mt-2 text-indigo-400">308</div><p class="text-xs text-slate-400 mt-2">39.0% do total</p><i class="fa-solid fa-circle-question absolute right-4 bottom-3 text-5xl text-indigo-400 opacity-5"></i></div>
       <div class="glass kpi-card rounded-2xl p-5"><span class="text-[11px] uppercase tracking-wider font-bold text-slate-400">Redmine</span><div class="text-3xl font-extrabold mt-2 text-rose-400">157</div><p class="text-xs text-slate-400 mt-2">19.9% do total</p><i class="fa-solid fa-code-pull-request absolute right-4 bottom-3 text-5xl text-rose-400 opacity-5"></i></div>
       <div class="glass kpi-card rounded-2xl p-5"><span class="text-[11px] uppercase tracking-wider font-bold text-slate-400">Falta de Dados</span><div class="text-3xl font-extrabold mt-2 text-amber-400">28</div><p class="text-xs text-slate-400 mt-2">3.5% do total</p><i class="fa-solid fa-triangle-exclamation absolute right-4 bottom-3 text-5xl text-amber-400 opacity-5"></i></div>
@@ -92,7 +93,7 @@
       <div class="glass rounded-2xl p-6 lg:col-span-5">
         <div class="mb-3 flex items-start justify-between gap-2">
           <div>
-            <h2 class="section-title font-bold"><i class="fa-solid fa-users-gear text-cyan-400 mr-2"></i>Analistas N2</h2>
+            <h2 class="section-title font-bold"><i class="fa-solid fa-users-gear text-cyan-400 mr-2"></i>Analistas</h2>
             <p class="text-xs text-slate-400 mt-1">Clique para filtrar os 4 painéis interligados</p>
           </div>
           <button id="analistasFilterBadge" onclick="clearFilter('analista')" class="hidden shrink-0 items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/25 hover:bg-emerald-500/25"><i class="fa-solid fa-filter"></i><span id="analistasFilterNome"></span><i class="fa-solid fa-xmark ml-1"></i></button>
@@ -107,7 +108,7 @@
     </div>
 
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!--<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <div class="glass rounded-2xl p-6">
         <div class="mb-4">
           <h2 class="font-bold text-lg"><i class="fa-solid fa-building text-amber-400 mr-2"></i>Visão Organizacional</h2>
@@ -134,7 +135,7 @@
           </div>
           
         </div>
-      </div>
+      </div>-->
 
       <div class="glass rounded-2xl p-6 lg:col-span-2">
         <div class="mb-4 flex items-start justify-between gap-2">
@@ -236,7 +237,7 @@
           
         </div>
       </div>
-    </div>
+    <!--</div>-->
 
     <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
       <div class="glass rounded-2xl p-6">
@@ -261,68 +262,6 @@
         <div class="mt-4 flex flex-wrap gap-2 text-[10px] text-slate-500"><span>• Filtro: mínimo de 2 tickets enviados.</span><span>• % Dúvida = Dúvida ÷ Enviados.</span><span>• Ordenação: % Dúvida (proporção).</span></div>
       </div>
     </div>
-
-    <div class="glass rounded-2xl p-6">
-      <div class="flex items-center justify-between mb-4">
-        <div>
-          <h2 class="font-bold text-lg">
-            <i class="fa-solid fa-lightbulb text-amber-400 mr-2"></i>Recomendações Operacionais
-          </h2>
-          <p class="text-xs text-slate-400 mt-1">
-            Recomendações gerais e pontos de atenção identificados pela combinação Squad × Categoria × Subcategoria × Ação.
-          </p>
-        </div>
-        <span class="text-[11px] px-2 py-1 rounded-full bg-slate-800 text-slate-400">
-          3 recomendações
-        </span>
-      </div>
-
-      <!-- Recomendações existentes: preservadas -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        
-        <div class="rounded-2xl p-5 bg-slate-900/60 border border-slate-800 border-t-4 border-t-indigo-500">
-          <div class="flex items-center justify-between gap-2 mb-3">
-            <span class="text-xs font-bold text-indigo-400">Recomendação 1</span>
-            
-            <span class="text-[10px] px-2 py-1 rounded bg-slate-800 text-slate-300">39.0% dos casos</span>
-            
-          </div>
-          <h3 class="font-bold text-sm mb-2">Treinamento focal nos módulos de maior volume de dúvidas</h3>
-          <p class="text-xs text-slate-300 leading-relaxed mb-4">Concentrar capacitação do N1 nos módulos e-Social, Folha de Pagamento, que concentram a maior parte das 308 dúvidas encaminhadas.</p>
-          <div class="text-[11px] text-slate-400 bg-slate-950/60 rounded-xl p-3">
-            <strong class="text-slate-300">Evidência:</strong> Dúvida + Dúvida Chat = 308 (39.0% do total).
-          </div>
-        </div>
-        
-        <div class="rounded-2xl p-5 bg-slate-900/60 border border-slate-800 border-t-4 border-t-rose-500">
-          <div class="flex items-center justify-between gap-2 mb-3">
-            <span class="text-xs font-bold text-rose-400">Recomendação 2</span>
-            
-            <span class="text-[10px] px-2 py-1 rounded bg-slate-800 text-slate-300">19.9% dos casos</span>
-            
-          </div>
-          <h3 class="font-bold text-sm mb-2">Acompanhamento do backlog Redmine com Engenharia</h3>
-          <p class="text-xs text-slate-300 leading-relaxed mb-4">Estabelecer rito periódico de alinhamento sobre os 157 chamados escalados para Desenvolvimento, priorizando os módulos de maior volume.</p>
-          <div class="text-[11px] text-slate-400 bg-slate-950/60 rounded-xl p-3">
-            <strong class="text-slate-300">Evidência:</strong> Redmine = 157 (19.9% do total).
-          </div>
-        </div>
-        
-        <div class="rounded-2xl p-5 bg-slate-900/60 border border-slate-800 border-t-4 border-t-amber-500">
-          <div class="flex items-center justify-between gap-2 mb-3">
-            <span class="text-xs font-bold text-amber-400">Recomendação 3</span>
-            
-            <span class="text-[10px] px-2 py-1 rounded bg-slate-800 text-slate-300">3.5% dos casos</span>
-            
-          </div>
-          <h3 class="font-bold text-sm mb-2">Checklist de entrada para reduzir Falta de Dados</h3>
-          <p class="text-xs text-slate-300 leading-relaxed mb-4">Implementar formulário mínimo obrigatório (print, versão, CNPJ, anexos) para mitigar os 28 casos de informação incompleta.</p>
-          <div class="text-[11px] text-slate-400 bg-slate-950/60 rounded-xl p-3">
-            <strong class="text-slate-300">Evidência:</strong> Falta de Dados = 28 (3.5% do total).
-          </div>
-        </div>
-        
-      </div>
 
       <!-- Nova análise factual: Dúvida por grupo de categoria (Fiscal / DP) -->
       <div class="mt-6 pt-6 border-t border-slate-800">
@@ -397,11 +336,75 @@
         </div>
       </div>
     </div>
+	
+	
+    <div class="glass rounded-2xl p-6">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="font-bold text-lg">
+            <i class="fa-solid fa-lightbulb text-amber-400 mr-2"></i>Recomendações Operacionais
+          </h2>
+          <p class="text-xs text-slate-400 mt-1">
+            Recomendações gerais e pontos de atenção identificados pela combinação Squad × Categoria × Subcategoria × Ação.
+          </p>
+        </div>
+        <span class="text-[11px] px-2 py-1 rounded-full bg-slate-800 text-slate-400">
+          3 recomendações
+        </span>
+      </div>
 
-    <div class="glass rounded-2xl p-6"><div class="flex items-center justify-between mb-4"><div><h2 class="font-bold text-lg"><i class="fa-solid fa-brain text-violet-400 mr-2"></i>Análise IA</h2><p class="text-xs text-slate-400 mt-1">Modelo: qwen2.5:7b-instruct • Gerado em 28/08/2026 17:25</p></div></div><div class="prose prose-invert prose-sm max-w-none text-slate-300 leading-relaxed" id="analiseIA"><h2>Análise IA não executada</h2>
+      <!-- Recomendações existentes: preservadas -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        
+        <div class="rounded-2xl p-5 bg-slate-900/60 border border-slate-800 border-t-4 border-t-indigo-500">
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <span class="text-xs font-bold text-indigo-400">Recomendação 1</span>
+            
+            <span class="text-[10px] px-2 py-1 rounded bg-slate-800 text-slate-300">39.0% dos casos</span>
+            
+          </div>
+          <h3 class="font-bold text-sm mb-2">Treinamento focal nos módulos de maior volume de dúvidas</h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">Concentrar capacitação do N1 nos módulos e-Social, Folha de Pagamento, que concentram a maior parte das 308 dúvidas encaminhadas.</p>
+          <div class="text-[11px] text-slate-400 bg-slate-950/60 rounded-xl p-3">
+            <strong class="text-slate-300">Evidência:</strong> Dúvida + Dúvida Chat = 308 (39.0% do total).
+          </div>
+        </div>
+        
+        <div class="rounded-2xl p-5 bg-slate-900/60 border border-slate-800 border-t-4 border-t-rose-500">
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <span class="text-xs font-bold text-rose-400">Recomendação 2</span>
+            
+            <span class="text-[10px] px-2 py-1 rounded bg-slate-800 text-slate-300">19.9% dos casos</span>
+            
+          </div>
+          <h3 class="font-bold text-sm mb-2">Acompanhamento do backlog Redmine com Engenharia</h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">Estabelecer rito periódico de alinhamento sobre os 157 chamados escalados para Desenvolvimento, priorizando os módulos de maior volume.</p>
+          <div class="text-[11px] text-slate-400 bg-slate-950/60 rounded-xl p-3">
+            <strong class="text-slate-300">Evidência:</strong> Redmine = 157 (19.9% do total).
+          </div>
+        </div>
+        
+        <div class="rounded-2xl p-5 bg-slate-900/60 border border-slate-800 border-t-4 border-t-amber-500">
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <span class="text-xs font-bold text-amber-400">Recomendação 3</span>
+            
+            <span class="text-[10px] px-2 py-1 rounded bg-slate-800 text-slate-300">3.5% dos casos</span>
+            
+          </div>
+          <h3 class="font-bold text-sm mb-2">Checklist de entrada para reduzir Falta de Dados</h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">Implementar formulário mínimo obrigatório (print, versão, CNPJ, anexos) para mitigar os 28 casos de informação incompleta.</p>
+          <div class="text-[11px] text-slate-400 bg-slate-950/60 rounded-xl p-3">
+            <strong class="text-slate-300">Evidência:</strong> Falta de Dados = 28 (3.5% do total).
+          </div>
+        </div>
+        
+      </div>
+
+    <!--<div class="glass rounded-2xl p-6"><div class="flex items-center justify-between mb-4"><div><h2 class="font-bold text-lg"><i class="fa-solid fa-brain text-violet-400 mr-2"></i>Análise IA</h2><p class="text-xs text-slate-400 mt-1">Modelo: qwen2.5:7b-instruct • Gerado em 28/08/2026 21:13</p></div></div><div class="prose prose-invert prose-sm max-w-none text-slate-300 leading-relaxed" id="analiseIA"><h2>Análise IA não executada</h2>
 <p>A análise com Ollama está desativada nesta execução. O dashboard foi gerado apenas com os dados factuais.</p></div></div>
 
     <div class="glass rounded-2xl p-6"><h2 class="font-bold"><i class="fa-solid fa-database text-cyan-400 mr-2"></i>Próxima evolução dos dados</h2><p class="text-xs text-slate-400 mt-1 mb-5">A fonte atual permite análise de volume e distribuição, mas não sustenta métricas de tempo, produtividade ou causa raiz.</p><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"><div class="bg-slate-900/60 rounded-xl p-4 border border-slate-800"><div class="text-cyan-400 font-bold text-xs mb-2"><i class="fa-solid fa-circle-plus mr-1"></i>SLA e tempo</div><p class="text-xs text-slate-400">Adicionar abertura, primeira resposta e conclusão.</p></div><div class="bg-slate-900/60 rounded-xl p-4 border border-slate-800"><div class="text-cyan-400 font-bold text-xs mb-2"><i class="fa-solid fa-circle-plus mr-1"></i>Causa raiz</div><p class="text-xs text-slate-400">Criar taxonomia padronizada para classificar a natureza da demanda.</p></div><div class="bg-slate-900/60 rounded-xl p-4 border border-slate-800"><div class="text-cyan-400 font-bold text-xs mb-2"><i class="fa-solid fa-circle-plus mr-1"></i>Esforço</div><p class="text-xs text-slate-400">Registrar TMA e horas apontadas por atendimento.</p></div><div class="bg-slate-900/60 rounded-xl p-4 border border-slate-800"><div class="text-cyan-400 font-bold text-xs mb-2"><i class="fa-solid fa-circle-plus mr-1"></i>FCR N1</div><p class="text-xs text-slate-400">Registrar o volume total recebido pelo N1, inclusive demandas resolvidas no primeiro nível.</p></div></div></div>
+	-->
   </section>
 
   <section id="viewSlides" class="hidden space-y-5">
@@ -410,7 +413,7 @@
   </section>
 </main>
 
-<footer class="max-w-7xl mx-auto px-4 lg:px-8 py-6 text-center text-xs text-slate-500 border-t border-slate-800/70">Dashboard N1 → N2 • 05/2026 • Gerado em 28/08/2026 17:25 • Desenvolvido por: SilvaneiBarbosa ©</footer>
+<footer class="max-w-7xl mx-auto px-4 lg:px-8 py-6 text-center text-xs text-slate-500 border-t border-slate-800/70">Dashboard  N1 → Avançado • 05/2026 • Gerado em 28/08/2026 21:13 • Desenvolvido por: SilvaneiBarbosa ©</footer>
 
 <script>
 const categoryData={"labels": ["e-Social", "Folha de Pagamento", "Tron Box", "Escrita Fiscal", "Contabilidade", "Banco de Dados", "Ponto Eletrônico", "Livro Caixa", "Reinf", "Tron Connect"], "counts": [304, 294, 56, 46, 23, 20, 18, 11, 8, 6]};
@@ -626,7 +629,7 @@ function escapeHtml(v){return String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':
 function switchView(mode){const d=document.getElementById('viewDashboard'),s=document.getElementById('viewSlides'),bd=document.getElementById('btnDash'),bs=document.getElementById('btnSlides');if(mode==='dashboard'){d.classList.remove('hidden');s.classList.add('hidden');bd.className='px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600';bs.className='px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400'}else{d.classList.add('hidden');s.classList.remove('hidden');bs.className='px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600';bd.className='px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400';renderSlide(currentSlide)}}
 let currentSlide=1;
 const slides=[
- {title:'1. Visão geral',html:`<div class="space-y-6"><div><div class="text-indigo-400 text-xs font-bold uppercase">Período 05/2026</div><h3 class="text-2xl font-extrabold mt-2">Fluxo de demandas N1 → N2</h3><p class="text-sm text-slate-400 mt-2">1064 registros entre 01/05/2026 e 30/05/2026.</p></div><div class="grid md:grid-cols-3 gap-4"> <div class="bg-slate-900/60 p-5 rounded-xl"><b class="text-3xl">1064</b><div class="text-xs text-slate-400 mt-1">Demandas analisadas</div></div><div class="bg-slate-900/60 p-5 rounded-xl"><b class="text-3xl text-indigo-400">39.0%</b><div class="text-xs text-slate-400 mt-1">Dúvidas</div></div><div class="bg-slate-900/60 p-5 rounded-xl"><b class="text-3xl text-rose-400">19.9%</b><div class="text-xs text-slate-400 mt-1">Redmine</div></div></div><div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-sm text-slate-300">A leitura deve ser feita como distribuição das demandas encaminhadas, não como indicador de produtividade ou qualidade.</div></div>`},
+ {title:'1. Visão geral',html:`<div class="space-y-6"><div><div class="text-indigo-400 text-xs font-bold uppercase">Período 05/2026</div><h3 class="text-2xl font-extrabold mt-2">Fluxo de demandas  N1 → Avançado</h3><p class="text-sm text-slate-400 mt-2">1064 registros entre 01/05/2026 e 30/05/2026.</p></div><div class="grid md:grid-cols-3 gap-4"> <div class="bg-slate-900/60 p-5 rounded-xl"><b class="text-3xl">1064</b><div class="text-xs text-slate-400 mt-1">Demandas analisadas</div></div><div class="bg-slate-900/60 p-5 rounded-xl"><b class="text-3xl text-indigo-400">39.0%</b><div class="text-xs text-slate-400 mt-1">Dúvidas</div></div><div class="bg-slate-900/60 p-5 rounded-xl"><b class="text-3xl text-rose-400">19.9%</b><div class="text-xs text-slate-400 mt-1">Redmine</div></div></div><div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-sm text-slate-300">A leitura deve ser feita como distribuição das demandas encaminhadas, não como indicador de produtividade ou qualidade.</div></div>`},
  {title:'2. Concentração por categoria',html:`<div class="space-y-5"><h3 class="text-xl font-bold">Onde está concentrado o volume?</h3><div><div class="flex justify-between text-xs mb-1"><span>e-Social</span><b>304 (38.5%)</b></div><div class="h-3 bg-slate-900 rounded-full overflow-hidden"><div class="h-full bg-indigo-500 rounded-full" style="width:38.5%"></div></div></div><div><div class="flex justify-between text-xs mb-1"><span>Folha de Pagamento</span><b>294 (37.2%)</b></div><div class="h-3 bg-slate-900 rounded-full overflow-hidden"><div class="h-full bg-indigo-500 rounded-full" style="width:37.2%"></div></div></div><div><div class="flex justify-between text-xs mb-1"><span>Tron Box</span><b>56 (7.1%)</b></div><div class="h-3 bg-slate-900 rounded-full overflow-hidden"><div class="h-full bg-indigo-500 rounded-full" style="width:7.1%"></div></div></div><div><div class="flex justify-between text-xs mb-1"><span>Escrita Fiscal</span><b>46 (5.8%)</b></div><div class="h-3 bg-slate-900 rounded-full overflow-hidden"><div class="h-full bg-indigo-500 rounded-full" style="width:5.8%"></div></div></div><div><div class="flex justify-between text-xs mb-1"><span>Contabilidade</span><b>23 (2.9%)</b></div><div class="h-3 bg-slate-900 rounded-full overflow-hidden"><div class="h-full bg-indigo-500 rounded-full" style="width:2.9%"></div></div></div><div class="p-4 bg-slate-900/60 rounded-xl text-xs text-slate-300">Top 2 categorias representam <strong>75.7%</strong> do volume.</div></div>`},
  {title:'3. Natureza das ações',html:`<div class="space-y-5"><h3 class="text-xl font-bold">Como as demandas foram direcionadas?</h3><div class="grid md:grid-cols-2 gap-4"><div class="p-5 rounded-xl bg-indigo-500/10 border border-indigo-500/20"><b class="text-3xl text-indigo-400">39.0%</b><p class="font-bold mt-2">Dúvidas</p><p class="text-xs text-slate-400 mt-1">308 registros.</p></div><div class="p-5 rounded-xl bg-rose-500/10 border border-rose-500/20"><b class="text-3xl text-rose-400">19.9%</b><p class="font-bold mt-2">Redmine</p><p class="text-xs text-slate-400 mt-1">157 registros.</p></div><div class="p-5 rounded-xl bg-amber-500/10 border border-amber-500/20"><b class="text-3xl text-amber-400">3.5%</b><p class="font-bold mt-2">Falta de Dados</p><p class="text-xs text-slate-400 mt-1">28 registros.</p></div><div class="p-5 rounded-xl bg-slate-800/60"><b class="text-3xl">14.2%</b><p class="font-bold mt-2">Relacionado</p><p class="text-xs text-slate-400 mt-1">112 registros.</p></div></div></div>`},
  {title:'4. Recomendações',html:`<div class="space-y-4"><h3 class="text-xl font-bold">Plano de ação</h3><div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800"><span class="text-xs font-bold text-indigo-400">1</span><h4 class="font-bold mt-1">Treinamento focal nos módulos de maior volume de dúvidas</h4><p class="text-xs text-slate-300 mt-1">Concentrar capacitação do N1 nos módulos e-Social, Folha de Pagamento, que concentram a maior parte das 308 dúvidas encaminhadas.</p></div><div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800"><span class="text-xs font-bold text-indigo-400">2</span><h4 class="font-bold mt-1">Acompanhamento do backlog Redmine com Engenharia</h4><p class="text-xs text-slate-300 mt-1">Estabelecer rito periódico de alinhamento sobre os 157 chamados escalados para Desenvolvimento, priorizando os módulos de maior volume.</p></div><div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800"><span class="text-xs font-bold text-indigo-400">3</span><h4 class="font-bold mt-1">Checklist de entrada para reduzir Falta de Dados</h4><p class="text-xs text-slate-300 mt-1">Implementar formulário mínimo obrigatório (print, versão, CNPJ, anexos) para mitigar os 28 casos de informação incompleta.</p></div></div>`},
