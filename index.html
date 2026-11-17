@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatório N1 → Avançado</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ===== Barra lateral ===== */
+    .sidebar {
+      width: 180px;
+      background: #1e293b;
+      padding: 24px 16px;
+      border-right: 1px solid #334155;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex-shrink: 0;
+      transition: width 0.25s ease, padding 0.25s ease, opacity 0.2s ease;
+      overflow: hidden;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+    }
+
+    .sidebar.collapsed {
+      width: 0;
+      padding: 24px 0;
+      opacity: 0;
+      border-right: none;
+      pointer-events: none;
+    }
+
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-left: 8px;
+      min-width: 148px;
+    }
+
+    .sidebar h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #a5b4fc;
+      white-space: nowrap;
+    }
+
+    .period-btn {
+      display: block;
+      padding: 10px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #94a3b8;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      background: transparent;
+      cursor: pointer;
+      border: none;
+      text-align: left;
+      width: 100%;
+      white-space: nowrap;
+    }
+
+    .period-btn:hover {
+      background: #334155;
+      color: #e2e8f0;
+    }
+
+    .period-btn.active {
+      background: #4f46e5;
+      color: white;
+      font-weight: 500;
+    }
+
+    .period-btn.unavailable {
+      opacity: 0.45;
+    }
+
+    .period-btn.unavailable:hover {
+      background: #334155;
+      color: #94a3b8;
+    }
+
+    /* ===== Agrupamento por ano (sanfona) ===== */
+    .year-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+      min-height: 0;
+      min-width: 148px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: #334155 transparent;
+    }
+
+    .year-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      padding: 10px 14px;
+      border: none;
+      border-radius: 8px;
+      background: transparent;
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .year-btn:hover {
+      background: #334155;
+    }
+
+    .year-btn:focus-visible,
+    .period-btn:focus-visible {
+      outline: 2px solid #818cf8;
+      outline-offset: -2px;
+    }
+
+    .year-btn .chevron {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      color: #64748b;
+      transition: transform 0.2s ease;
+    }
+
+    .year-group.open .year-btn .chevron {
+      transform: rotate(90deg);
+    }
+
+    /* Ano que contém o mês selecionado */
+    .year-group.has-active .year-btn {
+      color: #a5b4fc;
+    }
+
+    .year-group.has-active .year-btn .chevron {
+      color: #a5b4fc;
+    }
+
+    .year-btn .count {
+      margin-left: auto;
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 1px 8px;
+      border-radius: 999px;
+      background: #0f172a;
+      color: #94a3b8;
+    }
+
+    /* Lista de meses com animação de abrir/fechar */
+    .months {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.25s ease;
+    }
+
+    .year-group.open .months {
+      grid-template-rows: 1fr;
+    }
+
+    .months-inner {
+      min-height: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-left: 14px;
+      border-left: 1px solid #334155;
+      visibility: hidden;
+      transition: visibility 0s linear 0.25s;
+    }
+
+    .year-group.open .months-inner {
+      padding: 4px 0 4px 8px;
+      visibility: visible;
+      transition-delay: 0s;
+    }
+
+    .months-inner .period-btn {
+      padding: 8px 12px;
+      font-size: 0.9rem;
+    }
+
+
+    /* ===== Conteúdo principal ===== */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      min-width: 0;
+    }
+
+
+    /* ===== Cabeçalho ===== */
+    .header {
+      height: 61px;
+      padding: 12px 20px;
+      background: #1e293b;
+      border-bottom: 1px solid #334155;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      flex-shrink: 0;
+      overflow: hidden;
+
+      transition:
+        height 0.25s ease,
+        padding 0.25s ease,
+        opacity 0.2s ease;
+    }
+
+    /* Cabeçalho recolhido */
+    .header.collapsed {
+      height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      opacity: 0;
+      border-bottom: none;
+    }
+
+
+    /* ===== Botão da barra lateral ===== */
+    .toggle-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      background: #0f172a;
+      color: #94a3b8;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .toggle-btn:hover {
+      background: #334155;
+      color: #e2e8f0;
+      border-color: #475569;
+    }
+
+    .toggle-btn svg {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.25s ease;
+    }
+
+    body.sidebar-collapsed .toggle-btn svg {
+      transform: rotate(180deg);
+    }
+
+
+    /* ===== Título do cabeçalho ===== */
+    .header-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .header-title h1 {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .badge {
+      background: #4f46e5;
+      color: white;
+      font-size: 0.75rem;
+      padding: 2px 10px;
+      border-radius: 999px;
+    }
+
+
+    /* ===== Botão para recolher o cabeçalho ===== */
+    .header-collapse-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      background: #0f172a;
+      color: #94a3b8;
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 18px;
+      line-height: 1;
+
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .header-collapse-btn:hover {
+      background: #334155;
+      color: #e2e8f0;
+      border-color: #475569;
+    }
+
+
+    /* ===== Botão para expandir o cabeçalho ===== */
+    .show-header-btn {
+      display: none;
+
+      position: absolute;
+      top: 8px;
+      right: 12px;
+
+      width: 36px;
+      height: 36px;
+
+      border-radius: 8px;
+      border: 1px solid #334155;
+
+      background: #1e293b;
+      color: #94a3b8;
+
+      cursor: pointer;
+
+      align-items: center;
+      justify-content: center;
+
+      font-size: 18px;
+      line-height: 1;
+
+      z-index: 10;
+
+      transition: all 0.2s;
+    }
+
+    .show-header-btn:hover {
+      background: #334155;
+      color: #e2e8f0;
+      border-color: #475569;
+    }
+
+    .show-header-btn.visible {
+      display: flex;
+    }
+
+
+    /* ===== Dashboard ===== */
+    iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+      background: #0f172a;
+    }
+
+
+    /* ===== Mensagem de período não apurado ===== */
+    .empty-state {
+      display: none;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 40px;
+      text-align: center;
+      background: #0f172a;
+    }
+
+    .empty-state.visible {
+      display: flex;
+    }
+
+    .empty-state .icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #64748b;
+    }
+
+    .empty-state h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+
+    .empty-state p {
+      font-size: 0.95rem;
+      color: #94a3b8;
+      max-width: 360px;
+      line-height: 1.5;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Barra lateral de períodos -->
+  <aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-header">
+      <h2>Período</h2>
+    </div>
+
+    <!-- Anos e meses são gerados automaticamente pelo script -->
+    <nav class="year-list" id="year-list" aria-label="Períodos"></nav>
+
+  </aside>
+
+
+  <!-- Área principal -->
+  <div class="main">
+
+    <!-- Cabeçalho -->
+    <header class="header" id="header">
+
+      <!-- Botão de ocultar/expandir a barra lateral -->
+      <button class="toggle-btn"
+              id="toggle-sidebar"
+              title="Ocultar / Expandir períodos">
+
+        <svg viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="2"
+             stroke-linecap="round"
+             stroke-linejoin="round">
+
+          <polyline points="15 18 9 12 15 6"></polyline>
+
+        </svg>
+
+      </button>
+
+
+      <div class="header-title">
+
+        <h1>Relatório N1 → Avançado</h1>
+
+        <span class="badge" id="current-month">
+          --/--
+        </span>
+
+      </div>
+
+
+      <!-- NOVO: botão para recolher o cabeçalho -->
+      <button class="header-collapse-btn"
+              id="collapse-header"
+              title="Ocultar cabeçalho">
+        ↑
+      </button>
+
+    </header>
+
+
+    <!-- NOVO: botão que aparece quando o cabeçalho está recolhido -->
+    <button class="show-header-btn"
+            id="show-header"
+            title="Mostrar cabeçalho">
+      ↓
+    </button>
+
+
+    <!-- Dashboard -->
+    <iframe id="dashboard-frame"
+            title="Dashboard">
+    </iframe>
+
+
+    <!-- Mensagem de período não apurado -->
+    <div class="empty-state"
+         id="empty-state">
+
+      <div class="icon">
+        📅
+      </div>
+
+      <h2>
+        Período ainda não apurado
+      </h2>
+
+      <p id="empty-message">
+        Os dados deste mês ainda não foram processados.<br>
+        Assim que o relatório estiver disponível,
+        ele aparecerá automaticamente.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    // ============================================================
+    // CONFIGURAÇÃO
+    // Liste aqui os meses que JÁ possuem o arquivo HTML (MM/AAAA).
+    // Um ano só aparece na barra lateral se tiver ao menos um mês
+    // listado. Ao chegar em 2027, basta incluir '01/2027' etc.
+    // O arquivo esperado é: dashboard_executivo_MM-AAAA.html
+    // ============================================================
+
+    const MESES_DISPONIVEIS = [
+      // '01/2026',
+      // '02/2026',
+      // '03/2026',
+      // '04/2026',
+      '05/2026',
+      '06/2026',
+      '07/2026',
+      '08/2026',
+      '09/2026',
+      '10/2026'
+      // '11/2026',
+      // '12/2026'
+    ];
+
+    // true  = dentro de cada ano mostra os 12 meses (os sem relatório
+    //         ficam esmaecidos e exibem "Período ainda não apurado")
+    // false = mostra somente os meses que já possuem relatório
+    const MOSTRAR_MESES_INDISPONIVEIS = true;
+
+
+    // ----------------------------------------------------------
+    // Utilidades
+    // ----------------------------------------------------------
+
+    function getMesAnterior() {
+      const hoje = new Date();
+      const d = new Date(hoje.getFullYear(), hoje.getMonth() - 1, 1);
+      const mm = String(d.getMonth() + 1).padStart(2, '0');
+      return `${mm}/${d.getFullYear()}`;
+    }
+
+    // Ordena 'MM/AAAA' cronologicamente
+    function ordenarMeses(lista) {
+      return [...lista].sort((a, b) => {
+        const [ma, ya] = a.split('/').map(Number);
+        const [mb, yb] = b.split('/').map(Number);
+        return (ya - yb) || (ma - mb);
+      });
+    }
+
+    const mesesOrdenados = ordenarMeses(MESES_DISPONIVEIS);
+
+    // Anos que possuem ao menos um mês disponível
+    const anos = [...new Set(
+      mesesOrdenados.map(m => m.split('/')[1])
+    )].sort();
+
+    const CHEVRON_SVG =
+      '<svg class="chevron" viewBox="0 0 24 24" fill="none" ' +
+      'stroke="currentColor" stroke-width="2.5" ' +
+      'stroke-linecap="round" stroke-linejoin="round">' +
+      '<polyline points="9 18 15 12 9 6"></polyline></svg>';
+
+
+    // ----------------------------------------------------------
+    // Elementos
+    // ----------------------------------------------------------
+
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggle-sidebar');
+    const yearList = document.getElementById('year-list');
+    const iframe = document.getElementById('dashboard-frame');
+    const emptyState = document.getElementById('empty-state');
+    const emptyMessage = document.getElementById('empty-message');
+    const badge = document.getElementById('current-month');
+
+    const header = document.getElementById('header');
+    const collapseHeaderBtn = document.getElementById('collapse-header');
+    const showHeaderBtn = document.getElementById('show-header');
+
+
+    // ----------------------------------------------------------
+    // Monta a barra lateral (um grupo por ano)
+    // ----------------------------------------------------------
+
+    anos.forEach(ano => {
+
+      const grupo = document.createElement('div');
+      grupo.className = 'year-group';
+      grupo.dataset.year = ano;
+
+      const disponiveisNoAno =
+        mesesOrdenados.filter(m => m.endsWith('/' + ano));
+
+      // Cabeçalho do ano
+      const yearBtn = document.createElement('button');
+      yearBtn.className = 'year-btn';
+      yearBtn.type = 'button';
+      yearBtn.setAttribute('aria-expanded', 'false');
+      yearBtn.innerHTML =
+        CHEVRON_SVG +
+        `<span>${ano}</span>` +
+        `<span class="count" title="Meses apurados">` +
+        `${disponiveisNoAno.length}/12</span>`;
+
+      // Contêiner dos meses
+      const months = document.createElement('div');
+      months.className = 'months';
+
+      const inner = document.createElement('div');
+      inner.className = 'months-inner';
+
+      for (let m = 1; m <= 12; m++) {
+
+        const mm = String(m).padStart(2, '0');
+        const mes = `${mm}/${ano}`;
+        const disponivel = MESES_DISPONIVEIS.includes(mes);
+
+        if (!disponivel && !MOSTRAR_MESES_INDISPONIVEIS) continue;
+
+        const btn = document.createElement('button');
+        btn.className = 'period-btn' + (disponivel ? '' : ' unavailable');
+        btn.type = 'button';
+        btn.dataset.month = mes;
+        btn.dataset.file = `dashboard_executivo_${mm}-${ano}.html`;
+        btn.textContent = mes;
+
+        btn.addEventListener('click', () => carregarPeriodo(btn));
+
+        inner.appendChild(btn);
+      }
+
+      months.appendChild(inner);
+      grupo.appendChild(yearBtn);
+      grupo.appendChild(months);
+      yearList.appendChild(grupo);
+
+      // Sanfona: abrir um ano fecha os demais
+      yearBtn.addEventListener('click', () => {
+        const estavaAberto = grupo.classList.contains('open');
+        fecharTodosOsAnos();
+        if (!estavaAberto) abrirAno(grupo);
+      });
+
+    });
+
+    const botoes = document.querySelectorAll('.period-btn');
+
+
+    function abrirAno(grupo) {
+      grupo.classList.add('open');
+      grupo.querySelector('.year-btn')
+           .setAttribute('aria-expanded', 'true');
+    }
+
+    function fecharTodosOsAnos() {
+      document.querySelectorAll('.year-group').forEach(g => {
+        g.classList.remove('open');
+        g.querySelector('.year-btn')
+         .setAttribute('aria-expanded', 'false');
+      });
+    }
+
+
+    // ----------------------------------------------------------
+    // Barra lateral e cabeçalho
+    // ----------------------------------------------------------
+
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      document.body.classList.toggle('sidebar-collapsed');
+    });
+
+    collapseHeaderBtn.addEventListener('click', () => {
+      header.classList.add('collapsed');
+      showHeaderBtn.classList.add('visible');
+    });
+
+    showHeaderBtn.addEventListener('click', () => {
+      header.classList.remove('collapsed');
+      showHeaderBtn.classList.remove('visible');
+    });
+
+
+    // ----------------------------------------------------------
+    // Carrega um período
+    // ----------------------------------------------------------
+
+    function carregarPeriodo(btn) {
+
+      const mes = btn.dataset.month;
+      const arquivo = btn.dataset.file;
+      const ano = mes.split('/')[1];
+
+      // Botão ativo
+      botoes.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Destaca o ano do mês selecionado e garante que está aberto
+      document.querySelectorAll('.year-group').forEach(g => {
+        g.classList.toggle('has-active', g.dataset.year === ano);
+      });
+
+      const grupoAtual =
+        document.querySelector(`.year-group[data-year="${ano}"]`);
+
+      if (grupoAtual && !grupoAtual.classList.contains('open')) {
+        fecharTodosOsAnos();
+        abrirAno(grupoAtual);
+      }
+
+      badge.textContent = mes;
+
+      if (MESES_DISPONIVEIS.includes(mes)) {
+
+        emptyState.classList.remove('visible');
+        iframe.style.display = 'block';
+        iframe.src = arquivo;
+
+      } else {
+
+        iframe.style.display = 'none';
+        iframe.src = 'about:blank';
+
+        emptyMessage.innerHTML =
+          `Os dados de <strong>${mes}</strong> ainda não foram processados.<br>
+           Assim que o relatório estiver disponível,
+           ele aparecerá automaticamente.`;
+
+        emptyState.classList.add('visible');
+      }
+    }
+
+
+    // ----------------------------------------------------------
+    // Inicialização: mês anterior, ou o último disponível
+    // ----------------------------------------------------------
+
+    const mesAnterior = getMesAnterior();
+
+    const mesInicial = MESES_DISPONIVEIS.includes(mesAnterior)
+      ? mesAnterior
+      : mesesOrdenados[mesesOrdenados.length - 1];
+
+    const btnInicial = Array.from(botoes)
+      .find(b => b.dataset.month === mesInicial);
+
+    if (btnInicial) {
+      carregarPeriodo(btnInicial);
+    } else {
+      // Nenhum relatório disponível ainda
+      badge.textContent = '--/--';
+      iframe.style.display = 'none';
+      emptyState.classList.add('visible');
+    }
+
+  </script>
+
+</body>
+</html>
